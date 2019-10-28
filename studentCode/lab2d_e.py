@@ -7,7 +7,7 @@
 # **Bonus:** Add additional functionality, experiment with other string methods.
 
 def string_manip():
-    user_string = input("Enter a string to mess around with:\n")
+    user_string = input("2d. Enter a string to mess around with:\n")
     out_string = user_string.upper()[::-1]
     return out_string
 
@@ -24,7 +24,7 @@ print(string_manip())
 # ex: Output number of characters, number of uppercase letters, etc...
 
 def word_counter():
-    user_string = input("Enter a string:\n")
+    user_string = input("2e. Enter a string:\n")
     word_count = len(user_string.split(' '))
     char_count = len(user_string)
     upper_count = 0

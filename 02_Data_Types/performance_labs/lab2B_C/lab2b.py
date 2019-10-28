@@ -19,49 +19,50 @@ print("Values before modification: x: {} and y: {}".format(x, y))
 
 
 # TODO: manually flip the third bit in x
-x = None
+x = x^4
 
 # TODO: manually flip the 1st bit in y
-y = None
+y = y^1
 
 print("Values after modificaiton: x: {} and y: {}".format(x, y))
 
 # NOTE: You may need to add additional re-asignments for the TODOs below
 # TODO: sum of x and y as a hex value
-answer1 = None
+answer1 = hex(x+y)
 
 # TODO: difference of x minus y as int
-answer2 = None
+answer2 = int(x-y)
 
 # TODO: product of x and y as octal
-answer3 = None
+answer3 = oct(x*y)
 
 # TODO: quotient of x divided by y as binary
-answer4 = None
+answer4 = bin(x//y)
 
 # TODO: x modulus 3 as int
-answer5 = None
+answer5 = int(x%3)
 
 # TODO: y squared as int
-answer6 = None
+answer6 = int(y**2)
 
 print("1: {}\n2: {}\n3: {}\n4: {}\n5: {}\n6: {}\n \b===================================".format(answer1, answer2, answer3, answer4, answer5, answer6))
 
 # TODO: Using prefixes and conversions:
 
 ## TODO: Set binA == 0011, set binB to 1001
-binA = None
-binB = None
+binA = 0b0011
+binB = 0b1001
 
 ## TODO: binA AND binB, assign the value to binC
-binC = None
+binC = binA & binB
 
 ## TODO: Set decA to decimal version of binA, set decB to decimal version of binB
-decA = None
-decB = None
+decA = int(binA)
+decB = int(binB)
 
 ## TODO: Set binA to bin representation of binA, set binB to the bin representation of binB
-binA = None
-binB = None
+binA = bin(binA)
+binB = bin(binB)
 
 print("Results:\n-Decimal- A: {} B: {}\n-Binary- A: {} B: {}".format(decA, decB, binA, binB))
+print("Results: -Binary- A: {} AND B: {} = C: {}".format(binA, binB, binC))
