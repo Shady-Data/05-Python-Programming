@@ -39,10 +39,10 @@ def word_counter():
         elif char.isdigit():
             digit_count += 1
     
-    print("# of words: %d"% word_count)
-    print("# of characters: %d"% char_count)
-    print("# of uppercase letters: %d"% upper_count)
-    print("# of lowercase letters: %d"% lower_count)
-    print("# of digits/numbers: %d"% digit_count)
+    print("# of words: {}".format(word_count))
+    print("# of characters: {}".format(char_count))
+    print("# of uppercase letters: {}".format(upper_count))
+    print("# of lowercase letters: {}".format(lower_count))
+    print("# of digits/numbers: {}".format(digit_count))
 
 word_counter()
