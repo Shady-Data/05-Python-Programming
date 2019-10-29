@@ -183,10 +183,10 @@ def stock_calc():
     stocks_sold['costforamount'] = stocks_sold['amount'] * stocks_sold['costper']
     stocks_sold['commission'] = stocks_sold['costforamount'] * 0.02
     stocks_sold['total'] = stocks_sold['costforamount'] - stocks_sold['commission']
-    headers = ['Purchase', 'Sell']
-    print("                   |{:^12} |{:^12}".format(headers[0], headers[1]))
-    print("Amount Paid/Earned |${:>12.2f}|${:>12.2f}".format(stocks_purchase['costforamount'], stocks_sold['costforamount']))
-    print("Commission Paid    |${:>12.2f}|${:>12.2f}".format(stocks_purchase['commission'], stocks_sold['commission']))
+    headers = ['Purchase', 'Sell', 'Totals']
+    print("                   |{:^12} |{:^12} |{:^12}".format(headers[0], headers[1], headers[2]))
+    print("Amount Paid/Earned |${:>12.2f}|${:>12.2f}|${:>12.2f}".format(stocks_purchase['costforamount'], stocks_sold['costforamount'], stocks_sold['costforamount'] - stocks_purchase['costforamount']))
+    print("Commission Paid    |${:>12.2f}|${:>12.2f}|${:>12.2f}".format(stocks_purchase['commission'], stocks_sold['commission'], stocks_purchase['commission'] + stocks_sold['commission']))
     stocks_profit = stocks_sold['total'] - stocks_purchase['total']
     if stocks_profit < 0:
         print("\nJoe lost $%.2f from his stocks adventure." % abs(stocks_profit))
