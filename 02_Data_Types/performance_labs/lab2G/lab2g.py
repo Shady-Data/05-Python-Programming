@@ -8,22 +8,24 @@ Instructions:
 
 
 planet_string = "Mercury|Venus|Earth|Mars|Jupiter|Saturn|Uranus|Neptune"
-planet_list = []
+planet_list = planet_string.split('|')
 #TODO: Convert planets_string to a list, save it to planet_list.
 
 def log_planets():
-    print "Here is a list of the planets:"
+    print("Here is a list of the planets:")
     for planet in planet_list:
-        print planet
-    print "----------------\n\n"
+        print(planet)
+    print("----------------\n\n")
 
 log_planets()
 
 print 'Adding "The Sun" to the beginning of the planets list.'
+planet_list.insert(0, "The Sun")
 #TODO: Perform action above
 log_planets()
 
 print 'Adding "Pluto" to the end of the planets list.'
+planet_list.append("Pluto")
 #TODO: Perform action above
 log_planets()
 
