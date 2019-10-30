@@ -42,7 +42,7 @@ print('---------------------')
 
 def automobile_cost():
     auto_costs = {'loan': 0, 'insurance': 0, 'gas': 0, 'oil': 0, 'tires': 0, 'maintenance': 0}
-    for key in auto_costs:
+    for key in auto_costs.keys():
         auto_costs[key] = get_monthly_cost(key)
 
     monthly_cost = sum_dict_values(auto_costs)

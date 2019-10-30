@@ -39,7 +39,7 @@ def to_roman_numeral():
         print("Error: input is outside of expected range.")
 
 # Stop
-to_roman_numeral()
+# to_roman_numeral()
 print('')
 
 # 2. Areas of Rectangles
@@ -81,7 +81,7 @@ def rectangleAreaCompare():
         print("Both Rectangles have the same area.")
 # Stop
 
-rectangleAreaCompare()
+# rectangleAreaCompare()
 
 # 3. Mass and Weight
 
@@ -89,10 +89,28 @@ rectangleAreaCompare()
 
 # ![image](https://user-images.githubusercontent.com/47218880/67404289-c6b2d480-f578-11e9-80c0-9bfa15de3df7.png)
 
-def mass_weight_compare():
-
-
 # Design a program that asks the user to enter an object’s mass, and then calculates its weight. If the object weighs more than 1,000 Newtons, display a message indicating that it is too heavy. If the object weighs less than 10 Newtons, display a message indicating that it is too light.
+
+def mass_weight_calc():
+    '''
+    Prompts a user to enter an object's mass, calulates a weight from the mass,
+    and prints a statement based on the object's weight.
+    '''
+    # get the mass of the object from the user
+    mass = float(input("Enter the mass of the object: "))
+    # calculate weight = mass * 9.8
+    weight = mass * 9.8
+
+    # if weight is > than 1000 then
+    if weight > 1000:
+        # Display the object is too heavy
+        print("The object is too heavy")
+    # Else if weight < 10 then
+    elif weight < 10:
+        print("The object is too light")
+
+
+# mass_weight_calc()
 
 # 4. Magic Dates
 
@@ -102,7 +120,7 @@ def mass_weight_compare():
 
 # Design a program that asks the user to enter a month (in numeric form), a day, and a two-digit year. The program should then determine whether the month times the day equals the year. If so, it should display a message saying the date is magic. Otherwise, it should display a message saying the date is not magic.
 
-def magic_dates():
+# def magic_dates():
 
 
 # 5. Color Mixer
@@ -118,7 +136,7 @@ def magic_dates():
 # Design a program that prompts the user to enter the names of two primary colors to mix. If the user enters anything other than “red,” “blue,” or “yellow,” the program should display an error message. Otherwise, the program should display the name of the secondary color that results.
 
 # Start // colorMixer
-def color_mixer()
+def color_mixer():
 #     Declare String priColor1, priColor2
     user_colors = {'color_1': "", 'color_2': ''}
     # dictionary of primary colors with values of dictionaries containing mix results
@@ -128,7 +146,7 @@ def color_mixer()
 #     Display "Please enter the second color to mix 'red, yellow, or blue': "
 #     Input priColor2
     # iterate through user_colors keys to assign user input
-    for key in user_colours.keys():
+    for key in user_colors.keys():
         # loop continuously until user input is in the colours keys
         while user_colors[key] not in colours.keys():
             # Prompt user for input and assign the all lowercase value of the input to the key of user_colors
@@ -154,24 +172,24 @@ def color_mixer()
 #                     Display "Mixed color is still blue."
 #                 Case yellow:
 #                     Display "Mixed color is green."
-#                 Default:
-#                     Display "Error: not a primary color"
-#             End Select
-#         Case yellow:
-#             Select priColor2
-#                 Case red:
-#                     Display "Mixed color is orange."
-#                 Case blue:
-#                     Display "Mixed color is green."
-#                 Case yellow:
-#                     Display "Mixed color is still yellow."
-#                 Default:
-#                     Display "Error: not a primary color"
-#             End Select
-#         Default:
+        #         Default:
+        #             Display "Error: not a primary color"
+        #     End Select
+        # Case yellow:
+        #     Select priColor2
+        #         Case red:
+        #             Display "Mixed color is orange."
+        #         Case blue:
+        #             Display "Mixed color is green."
+        #         Case yellow:
+        #             Display "Mixed color is still yellow."
+        #         Default:
+        #             Display "Error: not a primary color"
+        #     End Select
+        # Default:
 #             Display "Error: not a primary color"
 #     End Select
-    print("{} and {} become {} when mixed.".format(user_colors['color_1'], user_colors['color_2'], colours[user_colors['color_1'][user_colors['color_2']]]))
+    print("{} and {} become {} when mixed.".format(user_colors['color_1'], user_colors['color_2'], colours[user_colors['color_1']][user_colors['color_2']]))
 
 # Stop
 
@@ -181,7 +199,7 @@ color_mixer()
 
 # Design a change-counting game that gets the user to enter the number of coins required to make exactly one dollar. The program should ask the user to enter the number of pennies, nickels, dimes, and quarters. If the total value of the coins entered is equal to one dollar, the program should congratulate the user for winning the game. Otherwise, the program should display a message indicating whether the amount entered was more than or less than one dollar.
 
-def dollar_game():
+# def dollar_game():
 
 
 # 7. Book Club Points
@@ -243,7 +261,7 @@ def book_points_earned():
 #     Input booksPurchased
 # return
 
-book_points_earned()
+# book_points_earned()
 
 # 8. Software Sales
 
@@ -283,7 +301,7 @@ book_points_earned()
 # Module main
 def time_calc():
 #     Declare Integer secondsEntry, secondsCalc, minutesCalc, hoursCalc, daysCalc
-    time_dict = {'seconds': 0, 'minutes': 0, 'hours': 0, 'days':, 0}
+    time_dict = {'seconds': 0, 'minutes': 0, 'hours': 0, 'days': 0}
 #     call getSeconds()
     seconds_entry = int(input("Enter the number of whole seconds you wish to convert: "))
 #     set secondsCalc = secondsEntry // copy user input into another variable to work with, preserves original input
@@ -320,4 +338,4 @@ def time_calc():
     print("{} seconds is equivalent to {} days, {} hours, {} minutes, and {} seconds.".format(seconds_entry, time_dict['days'], time_dict['hours'], time_dict['minutes'], time_dict['seconds']))
 # End Module
 
-time_calc()
+# time_calc()
