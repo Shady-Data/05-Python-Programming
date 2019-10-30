@@ -4,12 +4,13 @@ class mad_libs:
 
     def __init__(self):
         '''
-        Default attributes for class
-        nouns: dictionary based wordbank for noun choices
-        verbs: dictionary based wordbank for verb choices
-        adjectives: dictionary based wordbank for adjectives choices
-        user_selection: dictionary for user input
-        cardbank: dictionary containing random selections from the wordbanks (player hand)
+        Default attributes for class:
+            Dictionary nouns: wordbank for noun choices
+            Dictionary verbs: wordbank for verb choices
+            Dictionary adjectives: wordbank for adjectives choices
+            Dictionary user_selection: contains user choices input
+            Dictionary cardbank: contains random selections from the wordbanks (player hand)
+            
         * WIP detach large dictionaries from code (CSV or json files)
             - add load calls for the csv/json files
         * Add phrasebank for prompts for the game
