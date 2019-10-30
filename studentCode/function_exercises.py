@@ -43,7 +43,7 @@ print('---------------------')
 def automobile_cost():
     auto_costs = {'loan': 0, 'insurance': 0, 'gas': 0, 'oil': 0, 'tires': 0, 'maintenance': 0}
     for key in auto_costs:
-        auto_costs[key] = get_monthly_cost(key):
+        auto_costs[key] = get_monthly_cost(key)
 
     monthly_cost = sum_dict_values(auto_costs)
     annual_cost = monthly_cost * 12
@@ -83,33 +83,61 @@ def calc_tax_assessed(p_avalue):
 property_tax()
 print('---------------------')
 
-# # 6. Body Mass Index Program Enhancement
-# # Write a program that calculates and displays a person’s body mass index (BMI). TheBMI is often used to determine whether a person is overweight or underweight for hisor her height. A person’s BMI is calculated with the following formula
+# # 6. Body Mass Index
+# # Write a program that calculates and displays a person’s body mass index (BMI). TheBMI is often used to determine whether a person is overweight or underweight for his or her height. A person’s BMI is calculated with the following formula
 
 # # BMI = weight * 703/(height**2)
 
 # # where weight is measured in pounds and height is measured in inches.
 
+def get_BMI():
+    height = get_height_inches()
+    weight = get_weight_pounds()
+    body_mass_index = calc_BMI(height, weight)
+    print(f"A person of {height:.1f}in. and weighs {weight:.1f}lbs has a BMI of {body_mass_index:.2f}")
+
+def get_height_inches():
+    return float(input('Please enter the height in inches: '))
+
+def get_weight_pounds():
+    return float(input('Please enter the weight in pounds: '))
+
+def calc_BMI(p_height, p_weight):
+    return p_weight * (703 / (height ** 2))
 
 # 7. Calories from Fat and Carbohydrates
-# A nutritionist who works for a fitness club helps members by evaluating their diets. As partof her evaluation, she asks members for the number of fat grams and carbohydrate gramsthat they consumed in a day. Then, she calculates the number of calories that result fromthe fat, using the following formula:
+# A nutritionist who works for a fitness club helps members by evaluating their diets. As part of her evaluation, she asks members for the number of fat grams and carbohydrate grams that they consumed in a day. Then, she calculates the number of calories that result from the fat, using the following formula:
 #     calories from fat = fat grams * 9
-# Next, she calculates the number of calories that result from the carbohydrates, using thefollowing formula:
+# Next, she calculates the number of calories that result from the carbohydrates, using the following formula:
 #     calories from carbs = carb grams * 4
 # The nutritionist asks you to write a program that will make these calculations.
 
 # Module fatGramCalc
+def calories_fat_carbs():
 # 	Declare Integer fatGrams, calories
 # 	Declare Real percentCalsFromFat
-
-# 	Do
-# 		Display "Please enter the total calories: "
-# 		Input calories
-# 	While calories < 0
+    calories = {'fat grams': 0, 'carb grams': 0}
 
 # 	Display "Please enter the amount of grams of fat: "
 # 	Input fatGrams
-	
+    for key in calories.keys():
+        calories[key] = get_grams()
+
+	calories['calsFat'] = calc_cals_fat(calories['fat grams'])
+	calories['calsCarbs'] = calc_cals_carbs(calories['carb grams'])
+    calories_from_fat_carbs = calories['calsFat'] + calories['calsCarbs']
+
+    print("You consumed {} calories from {} grams of fat and {} grams of carbohydrates today.".format(calories_from_fat_carbs, calories['fat grams'], calories['carb grams']))
+
+def get_grams(p_nutrient):
+    return float(input("Enter the number of {} grams eaten today: ").format(p_nutrient))
+
+def calc_cals_fat(p_fatGrams):
+    return p_fatGrams * 9
+
+def calc_cals_carbs(p_carbGrams):
+    return p_carbGrams * 4
+
 # 	While fatGrams < 0 OR fatGrams * 9 > calories
 # 		Display "Invalid entry! Amount of grams of fat cannot be negative"
 # 		Display "Calculated calories from fat cannot exceed total calories (grams of fat * 9)"
