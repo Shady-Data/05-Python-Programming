@@ -1,3 +1,5 @@
+from function_exercises import get_height_inches, get_weight_pounds, calc_BMI
+
 # 1. Roman Numerals
 
 # Design a program that prompts the user to enter a number within the range of 1 through 10. The program should display the Roman numeral version of that number. If the number is outside the range of 1 through 10, the program should display an error message.
@@ -40,7 +42,7 @@ def to_roman_numeral():
 
 # Stop
 # to_roman_numeral()
-print('')
+print('--------------')
 
 # 2. Areas of Rectangles
 
@@ -82,6 +84,7 @@ def rectangleAreaCompare():
 # Stop
 
 # rectangleAreaCompare()
+print('--------------')
 
 # 3. Mass and Weight
 
@@ -109,8 +112,8 @@ def mass_weight_calc():
     elif weight < 10:
         print("The object is too light")
 
-
 # mass_weight_calc()
+print('--------------')
 
 # 4. Magic Dates
 
@@ -120,7 +123,51 @@ def mass_weight_calc():
 
 # Design a program that asks the user to enter a month (in numeric form), a day, and a two-digit year. The program should then determine whether the month times the day equals the year. If so, it should display a message saying the date is magic. Otherwise, it should display a message saying the date is not magic.
 
-# def magic_dates():
+def magic_dates():
+    date = []
+    while len(date) < 3:
+        if len(date) == 0:
+            date.append(get_date_entry('year', date))
+        elif len(date) == 1:
+            date.append(get_date_entry('month', date))
+        elif len(date) == 2:
+            date.append(get_date_entry('day', date))
+        else:
+            print('Error')
+            break
+    
+def get_date_entry(p_type, p_date):
+    # define dictionary for valid inputs
+    months = {
+        'January': {'abbrev': 'Jan', 'days': 31, 'num': 1},
+        'February': {'abbrev': 'Feb', 'days': 28, 'leap_year': 29, 'num': 2},
+        'March': {'abbrev': 'Mar', 'days': 31, 'num': 3},
+        'April': {'abbrev': 'Apr', 'days': 30, 'num': 4},
+        'May': {'abbrev': 'May', 'days': 31, 'num': 5},
+        'June': {'abbrev': 'Jun', 'days': 30, 'num': 6},
+        'July': {'abbrev': 'Jul', 'days': 31, 'num': 7},
+        'August': {'abbrev': 'Aug', 'days': 31, 'num': 8},
+        'September': {'abbrev': 'Sep', 'days': 30, 'num': 9},
+        'October': {'abbrev': 'Oct', 'days': 31, 'num': 10},
+        'November': {'abbrev': 'Nov', 'days': 30, 'num': 11},
+        'December': {'abbrev': 'Dec', 'days': 31, 'num': 12},
+    }
+    # initialize empty lists to build for input validation
+    month_names = {}
+    month_abbreviations = []
+    # iterate over months items to append to respective lists
+    for month in months.keys():
+        month_names[months[month]['num']] = month
+        month_abbreviations.append(months['month']['abbrev'])
+    # get user input for type
+    if p_type == 'year':
+        user_input = int(input('Please enter a 2 digit year: '))
+        while user_input < 10 or user_input > 99:
+            user_input = int('Invalid entry: Enter a 2 digit year: ')
+        return user_input
+    elif p_type == 'month':
+        user_input = input('Please enter a month: ')
+        while user_input not in month_names.keys() and user_input not in month_names.values() and user_input not in month_abbreviations 
 
 
 # 5. Color Mixer
@@ -189,11 +236,12 @@ def color_mixer():
         # Default:
 #             Display "Error: not a primary color"
 #     End Select
-    print("{} and {} become {} when mixed.".format(user_colors['color_1'], user_colors['color_2'], colours[user_colors['color_1']][user_colors['color_2']]))
+    print("\n{} and {} become {} when mixed.".format(user_colors['color_1'], user_colors['color_2'], colours[user_colors['color_1']][user_colors['color_2']]))
 
 # Stop
 
-color_mixer()
+# color_mixer()
+print('--------------')
 
 # 6. Change for a Dollar Game
 
@@ -262,6 +310,7 @@ def book_points_earned():
 # return
 
 # book_points_earned()
+print('--------------')
 
 # 8. Software Sales
 
@@ -279,14 +328,34 @@ def book_points_earned():
 # ![image](https://user-images.githubusercontent.com/47218880/67404533-26a97b00-f579-11e9-8944-5cfaa2dc2729.png)
 # Design a program that asks the user to enter the weight of a package and then displays the shipping charges.
 
+
+
 # 10. Body Mass Index Program Enhancement
-# In programming Exercise #6 in Chapter 3 you were asked to write a program that calculates a person’s body mass index (BMI). Recall from that exercise that the BMI is often usedto determine whether a person is overweight or underweight for their height. A person’sBMI is calculated with the formula
+# In programming Exercise #6 in Chapter 3 you were asked to write a program that calculates a person’s body mass index (BMI). Recall from that exercise that the BMI is often used to determine whether a person is overweight or underweight for their height. A person’sBMI is calculated with the formula
 
 # BMI = weight * 703/(height**2)
 
-# where weight is measured in pounds and height is measured in inches. Enhance the program so it displays a message indicating whether the person has optimal weight, isunderweight, or is overweight. A person’s weight is considered to be optimal if his orher BMI is between 18.5 and 25. If the BMI is less than 18.5, the person is consideredto be underweight. If the BMI value is greater than 25, the person is considered to beoverweight.
+# where weight is measured in pounds and height is measured in inches. Enhance the program so it displays a message indicating whether the person has optimal weight, is underweight, or is overweight. A person’s weight is considered to be optimal if his orher BMI is between 18.5 and 25. If the BMI is less than 18.5, the person is considered to be underweight. If the BMI value is greater than 25, the person is considered to be overweight.
 
+def get_BMI():
+    '''
+    copied and modified get_BMI() code from function_exercises
+    import get_height_inches(), get_weight_pounds(), and calc_BMI() from function_exercises.py
+    '''
+    height = get_height_inches()
+    weight = get_weight_pounds()
+    body_mass_index = calc_BMI(height, weight)
+    if body_mass_index < 18.5:
+        print(f'The person is underweight with a BMI of {body_mass_index:.1f}')
+    elif body_mass_index >= 18.5 and body_mass_index <= 25:
+        print(f'The person has an optimal weight with a BMI of {body_mass_index:.1f}')
+    elif body_mass_index > 25:
+        print(f'The person is overweight with a BMI of {body_mass_index:.1f}')
+    else:
+        print('How did you end up here?')
 
+# get_BMI()
+print('--------------')
 
 # 11. Time Calculator
 

@@ -16,7 +16,7 @@ def kilometers2miles(p_kilometers):
     return p_kilometers * 0.6214
 
 # kilometer_convert()
-print('---------------------')
+# print('---------------------')
 
 # #3. How Much Insurance?
 
@@ -34,7 +34,7 @@ def get_80_percent(p_amount):
     return p_amount * 0.8
 
 # insurance_calc()
-print('---------------------')
+# print('---------------------')
 
 # #4. Automobile Costs
 
@@ -57,7 +57,7 @@ def sum_dict_values(p_dict):
     return sum(p_dict.values())
 
 # automobile_cost()
-print('---------------------')
+# print('---------------------')
 
 # #5. Property Tax
 
@@ -81,7 +81,7 @@ def calc_tax_assessed(p_avalue):
     return (p_avalue // 100) * 0.64
 
 # property_tax()
-print('---------------------')
+# print('---------------------')
 
 # # 6. Body Mass Index
 # # Write a program that calculates and displays a person’s body mass index (BMI). TheBMI is often used to determine whether a person is overweight or underweight for his or her height. A person’s BMI is calculated with the following formula
@@ -106,7 +106,7 @@ def calc_BMI(p_height, p_weight):
     return p_weight * (703 / (p_height ** 2))
 
 # get_BMI()
-print('---------------------')
+# print('---------------------')
 
 # 7. Calories from Fat and Carbohydrates
 # A nutritionist who works for a fitness club helps members by evaluating their diets. As part of her evaluation, she asks members for the number of fat grams and carbohydrate grams that they consumed in a day. Then, she calculates the number of calories that result from the fat, using the following formula:
@@ -142,7 +142,7 @@ def calc_cals_carbs(p_carbGrams):
     return p_carbGrams * 4
 
 # calories_fat_carbs()
-print('---------------------')
+# print('---------------------')
 
 # 	While fatGrams < 0 OR fatGrams * 9 > calories
 # 		Display "Invalid entry! Amount of grams of fat cannot be negative"
@@ -219,7 +219,7 @@ def get_sales(p_tier_dict):
 # End Function
 
 # stadium_seating()
-print('---------------------')
+# print('---------------------')
 
 # #9. Paint Job Estimator
 
@@ -268,7 +268,7 @@ def print_quote(p_quote_dict):
     print('Total Cost for the job:   ${:.2f}'.format(p_quote_dict['quote']))
 
 # paint_job_estimator()
-print('---------------------')
+# print('---------------------')
 
 # #10. Monthly Sales Tax
 
