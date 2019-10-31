@@ -7,7 +7,7 @@
 def kilometer_convert():
     kilometers = get_kilometers()
     miles = kilometers2miles(kilometers)
-    print(f"{kilometers} converts to {miles:.2f}")
+    print(f"{kilometers}km converts to {miles:.2f}mi")
 
 def get_kilometers():
     return float(input('Enter the distance in kilometers: '))
@@ -15,7 +15,7 @@ def get_kilometers():
 def kilometers2miles(p_kilometers):
     return p_kilometers * 0.6214
 
-kilometer_convert()
+# kilometer_convert()
 print('---------------------')
 
 # #3. How Much Insurance?
@@ -33,7 +33,7 @@ def get_building_replace_cost():
 def get_80_percent(p_amount):
     return p_amount * 0.8
 
-insurance_calc()
+# insurance_calc()
 print('---------------------')
 
 # #4. Automobile Costs
@@ -56,7 +56,7 @@ def get_monthly_cost(p_bill):
 def sum_dict_values(p_dict):
     return sum(p_dict.values())
 
-automobile_cost()
+# automobile_cost()
 print('---------------------')
 
 # #5. Property Tax
@@ -80,7 +80,7 @@ def calc_tax_assessed(p_avalue):
     # floor divide the assessed value by 100 and multiply it by 0.64 to get $0.64 per $100 of the assed value
     return (p_avalue // 100) * 0.64
 
-property_tax()
+# property_tax()
 print('---------------------')
 
 # # 6. Body Mass Index
@@ -103,7 +103,10 @@ def get_weight_pounds():
     return float(input('Please enter the weight in pounds: '))
 
 def calc_BMI(p_height, p_weight):
-    return p_weight * (703 / (height ** 2))
+    return p_weight * (703 / (p_height ** 2))
+
+# get_BMI()
+print('---------------------')
 
 # 7. Calories from Fat and Carbohydrates
 # A nutritionist who works for a fitness club helps members by evaluating their diets. As part of her evaluation, she asks members for the number of fat grams and carbohydrate grams that they consumed in a day. Then, she calculates the number of calories that result from the fat, using the following formula:
@@ -121,22 +124,25 @@ def calories_fat_carbs():
 # 	Display "Please enter the amount of grams of fat: "
 # 	Input fatGrams
     for key in calories.keys():
-        calories[key] = get_grams()
+        calories[key] = get_grams(key)
 
-	calories['calsFat'] = calc_cals_fat(calories['fat grams'])
-	calories['calsCarbs'] = calc_cals_carbs(calories['carb grams'])
+    calories['calsFat'] = calc_cals_fat(calories['fat grams'])
+    calories['calsCarbs'] = calc_cals_carbs(calories['carb grams'])
     calories_from_fat_carbs = calories['calsFat'] + calories['calsCarbs']
 
     print("You consumed {} calories from {} grams of fat and {} grams of carbohydrates today.".format(calories_from_fat_carbs, calories['fat grams'], calories['carb grams']))
 
 def get_grams(p_nutrient):
-    return float(input("Enter the number of {} grams eaten today: ").format(p_nutrient))
+    return float(input(f"Enter the number of {p_nutrient} eaten today: "))
 
 def calc_cals_fat(p_fatGrams):
     return p_fatGrams * 9
 
 def calc_cals_carbs(p_carbGrams):
     return p_carbGrams * 4
+
+# calories_fat_carbs()
+print('---------------------')
 
 # 	While fatGrams < 0 OR fatGrams * 9 > calories
 # 		Display "Invalid entry! Amount of grams of fat cannot be negative"
@@ -157,23 +163,31 @@ def calc_cals_carbs(p_carbGrams):
 # There are three seating categories at a stadium. For a softball game, Class A seats cost $15, Class B seats cost $12, and Class C seats cost $9. Design a modular program that asks how many tickets for each class of seats were sold, and then displays the amount of income generated from ticket sales.
 
 # Module main
+def stadium_seating():
 # 	Declare real revenue, sectionAProfits, sectionBProfits, sectionCProfits
 # 	Constant Integer MAX_SEATS_A = 300
 # 	Constant Integer MAX_SEATS_B = 500
 # 	Constant Integer MAX_SEATS_C = 200
-
+    tiers = {'A': {'tier': 'A', 'price': 15, 'MAX': 300, 'sold': 0}, 'B': {'tier': 'B', 'price': 12, 'MAX': 500, 'sold': 0}, 'C': {'tier': 'C', 'price': 9, 'MAX': 200, 'sold': 0}}
+    sales = {'A': 0, 'B': 0, 'C': 0}
 # 	Set sectionAProfits = getTicketsSales(20, MAX_SEATS_A)
 # 	Set sectionBProfits = getTicketsSales(15, MAX_SEATS_B)
 # 	Set sectionCProfits = getTicketsSales(10, MAX_SEATS_C)
 # 	Set revenue = sectionAProfits + sectionBProfits + sectionCProfits
+    for tier in tiers.keys():
+        tiers[tier]['sold'] = get_ticket_sales(tiers[tier])
+        sales[tier] = get_sales(tiers[tier])
+    
+    total_sales = sum_dict_values(sales)
 
+    print("Total Sales from all tiers: ${:.2f}".format(total_sales))
 # 	Display "$", revenue
 # End Module
 
 # Function Real getTicketsSales(Real price, Integer maxSeats)
+def get_ticket_sales(p_tiers_dict):
 # 	Declare Integer ticketsSold
 # 	Declare String sectionID
-
 # 	Select maxSeats
 # 		Case 300:
 # 			Set sectionID = "A"
@@ -185,16 +199,27 @@ def calc_cals_carbs(p_carbGrams):
 
 # 	Display "Enter number of seats sold for ", sectionID, ": "
 # 	Input ticketsSold
+    seats_sold = int(input("Enter the number of seat sold for section {}: ".format(p_tiers_dict['tier'])))
 
 # 	While ticketsSold < 0 OR tiscketsSold > maxSeats
+    while seats_sold < 0 or seats_sold > p_tiers_dict['MAX']:
 # 		Display "Ticket sales for section ", sectionID," cannot be negative or exceed the number of seats in the section (", maxSeats, ")"
+        print('Invalid input:\n\
+            seats sold for section {} cannot be less than 0\n \
+            or greater than {}.'.format(p_tiers_dict['tier'], p_tiers_dict['MAX']))
 # 		Display "Enter number of seats sold for ", sectionID, ": "
+        seats_sold = int(input("Enter the number of seat sold for section {}: ".format(p_tiers_dict['tier'])))
 # 		Input ticketsSold
 # 	End While
+    return seats_sold
 
 # 	Return price * ticketsSold
+def get_sales(p_tier_dict):
+    return float(p_tier_dict['price'] * p_tier_dict['sold'])
 # End Function
 
+# stadium_seating()
+print('---------------------')
 
 # #9. Paint Job Estimator
 
@@ -210,6 +235,41 @@ def calc_cals_carbs(p_carbGrams):
 
 # The total cost of the paint job
 # ```
+
+def paint_job_estimator():
+    paint_job_quote = {'requested': 0, 'MAX_SQFT_PER_DAY': 115, 'HOURLY_COST': 20.00, 'GALLONS_PER_DAY': 1, 'LABOR_PER_DAY': 8,
+    'gallons_req': 0, 'labor_hours': 0, 'labor_cost': 0.0, 'days_req': 0, 'paint_cost': 0.0, 'cost_per_gallon': 0.0, 'quote': 0.0}
+    
+    paint_job_quote['requested'] = get_job_request()
+    paint_job_quote['cost_per_gallon'] = get_paint_cost()
+    paint_job_quote['days_req'] = paint_job_quote['requested'] / paint_job_quote['MAX_SQFT_PER_DAY']
+    paint_job_quote['gallons_req'] = calc_job_quote(paint_job_quote['days_req'], paint_job_quote['GALLONS_PER_DAY'])
+    paint_job_quote['labor_hours'] = calc_job_quote(paint_job_quote['days_req'], paint_job_quote['LABOR_PER_DAY'])
+    paint_job_quote['labor_cost'] = calc_job_quote(paint_job_quote['labor_hours'], paint_job_quote['HOURLY_COST'])
+    paint_job_quote['paint_cost'] = calc_job_quote(paint_job_quote['gallons_req'], paint_job_quote['cost_per_gallon'])
+    paint_job_quote['quote'] = paint_job_quote['paint_cost'] + paint_job_quote['labor_cost']
+
+    print_quote(paint_job_quote)
+
+def get_job_request():
+    return int(input('Enter the total area, square footage, to be painted: '))
+
+def get_paint_cost():
+    return float(input("Enter the cost of a gallon of the requested paint: "))
+
+def calc_job_quote(p_job, p_CONSTANT):
+    return p_job * p_CONSTANT
+
+def print_quote(p_quote_dict):
+    print('\nGallons of paint required: {:.2f} gallons'.format(p_quote_dict['gallons_req']))
+    print('Hours of Labor estimated:  {:.1f} hours'.format(p_quote_dict['labor_hours']))
+    print('\nCost of paint:            ${:.2f}'.format(p_quote_dict['paint_cost']))
+    print('Labor Cost:               ${:.2f}'.format(p_quote_dict['labor_cost']))
+    print('Total Cost for the job:   ${:.2f}'.format(p_quote_dict['quote']))
+
+# paint_job_estimator()
+print('---------------------')
+
 # #10. Monthly Sales Tax
 
 # A retail company must file a monthly sales tax report listing the total sales for the month, and the amount of state and county sales tax collected. The state sales tax rate is 4 percent and the county sales tax rate is 2 percent. Design a modular program that asks the user to enter the total sales for the month. From this figure, the application should calculate and display the following:
@@ -223,3 +283,24 @@ def calc_cals_carbs(p_carbGrams):
 # In the pseudocode, represent the county tax rate (0.02) and the state tax rate (0.04) as named constants.
 # ```
 
+def monthly_sales_tax():
+    STATE_SALES_TAX_RATE = 0.04
+    COUNTY_SALES_TAX_RATE = 0.02
+
+    monthly_sales = get_monthly_sales()
+    state_sales_tax = calc_tax(monthly_sales, STATE_SALES_TAX_RATE)
+    county_sales_tax = calc_tax(monthly_sales, COUNTY_SALES_TAX_RATE)
+    total_sales_tax = state_sales_tax + county_sales_tax
+
+    print(f'\nCounty Sales Tax:   ${county_sales_tax:.2f}')
+    print(f'State Sales Tax:    ${state_sales_tax:.2f}')
+    
+    print(f'\nTotal Sales Tax:    ${total_sales_tax:.2f}')
+
+def get_monthly_sales():
+    return float(input('Enter Monthly Sales: $'))
+
+def calc_tax(p_sales, p_RATE):
+    return p_sales * p_RATE
+
+# monthly_sales_tax()
