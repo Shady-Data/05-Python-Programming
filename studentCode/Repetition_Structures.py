@@ -83,14 +83,24 @@ def budget_analysis():
 # For example, if a train travels 40 miles per hour for three hours, the distance traveled is 120 miles. Write a program that asks the user for the speed of a vehicle (in miles per hour) and the number of hours it has traveled. It should then use a loop to display the distance the vehicle has traveled for each hour of that time period.
 
 def distance_traveled():
+    '''
+    Takes a speed in miles per hour (mph) and a number of hours traveled
+    then creates a table of distances traveled (speed * hours) for each hour of travel
+    '''
+    # Prompt the user to input the rate/speed of travel
     speed = int(input('Enter the travel speed in mph: '))
+    # Prompt the user to input the number of hours traveled
     hours_traveled = int(input('Enter the number of hours traveling: '))
 
+    # Print the table headers
     print('----------------------')
     print('|  hours  | distance |')
     print('----------------------')
+    # iterate through the range 1 to the number of hours traveled + 1
     for hour in range(1, hours_traveled + 1):
+        # calculate the distance traveled for the hour/iteration of the loop
         distance = speed * hour
+        # Print the table contents
         print(f'|{hour:^9}|{distance:>7} mi|')
 
 # distance_traveled()
@@ -100,20 +110,41 @@ def distance_traveled():
 # Write a program that uses nested loops to collect data and calculate the average rainfall over a period of years. The program should first ask for the number of years. The outer loop will iterate once for each year. The inner loop will iterate twelve times, once for each month. Each iteration of the inner loop will ask the user for the inches of rainfall for that month. After all iterations, the program should display the number of months, the total inches of rainfall, and the average rainfall per month for the entire period.
 
 def average_rainfall():
+    '''
+    Takes a number of years and requests the amount of rainfall for each month of that year
+    then calculates the total rainfall for all months and the average monthly rainfall
+    '''
+    # Dictionary with the month being a key, and the value is the amount of rainfall for the month
     months = {'January': 0, 'February': 0, 'March': 0, 'April': 0, 'May': 0, 'June': 0, 'July': 0, 'August': 0, 'September': 0, 'October': 0, 'November': 0, 'December': 0}
+    # Prompt user for the number of years to be entered
     years = int(input("Enter the number of years for the rainfall study: "))
+    # initialize a variable to accumalate the number of months in the study, should equal 12 * years at the end
     accum_months = 0
+    # initialize an accumalator to total rainfall
     total_rainfall = 0.0
 
+    # Iterate over a range of 1 to the number of years entered + 1 (used for input)
     for year in range(1, years + 1):
+        # Display a year seperator for data entry
+        print('---------------')
+        # iterate over each month
         for month in months.keys():
+            # Prompt user for the amount rainfall of the month and assign the value to the month in the months dictionary
             months[month] = float(input(f'Enter the amount of rainfall, in inches, for {month}, of year {year} of the study: '))
+            # increment the month accumalator
             accum_months += 1
+        # sum the values entered for each month and add it to total_rainfall
         total_rainfall += sum(months.values())
-        
+    # print a seperator to signify the end of user inputs
+    print('---------------')
+
+    # calculate average rainfall by dividing the total rainfall by the number of months of data entered
     average_monthly_rainfall = total_rainfall / accum_months
+    # Display the number of months in the study
     print(f"\nTotal number of month in the study: {accum_months}")
+    # Display the total rainfall
     print(f'Total rainfall:                     {total_rainfall:.2f}in.')
+    # Display the average monthly rainfall
     print(f'Average Monthly rainfall:           {average_monthly_rainfall:.2f}in.')
 
 # average_rainfall()
@@ -165,8 +196,13 @@ def draw_table_celsius_fahr():
 # 7. Pennies for Pay
 # Write a program that calculates the amount of money a person would earn over a period of time if his or her salary is one penny the first day, two pennies the second day, and continues to double each day. The program should ask the user for the number of days. Display a table showing what the salary was for each day, and then show the total pay at the end of the period. The output should be displayed in a dollar amount, not the number of pennies.
 
+def pennies_for_pay():
+    
+
 # 8. Sum of Numbers
 # Write a program with a loop that asks the user to enter a series of positive numbers. The user should enter a negative number to signal the end of the series. After all the positive numbers have been entered, the program should display their sum.
+
+
 
 # 9. Write a program that uses nested loops to draw this pattern:
 # *******
@@ -178,12 +214,19 @@ def draw_table_celsius_fahr():
 # *
 
 def pattern_draw_1():
+    # Set loops variable to the number (lines to print)|(loops to run)
     loops = 7
+    # while loops > 0 Then
     while loops > 0:
+        # Set pattern = '' // Clears the pattern variable for the loop
         pattern = ''
+        # For n ( <= unused variable) in range 0 to the number of loops:
         for n in range(loops):
+            # Set pattern = pattern + '*' // builds the pattern to be printed
             pattern += "*"
+        # Print the built pattern
         print(pattern)
+        # Set loops = loops -1 // Decrement the sentinal value
         loops -= 1
 
 # pattern_draw_1()
@@ -198,13 +241,21 @@ def pattern_draw_1():
 # #     #
 
 def pattern_draw_2():
+    # initialize the an accumalator for spaces inserted in the pattern
     spaces = 0
+    # While accumalator < number of repetitions of the pattern
     while spaces < 6:
+        # Set pattern = '#' // clears the pattern and starts a new one
         pattern = '#'
+        # For space ( <= unused variable) in range 0 to accumalated spaces
         for space in range(spaces):
+            # Set pattern = pattern + ' ' // builds the number of empty spaces in the pattern
             pattern += " "
+        # Set pattern = pattern + '#' // adds the remaing char to the pattern for the loop
         pattern += '#'
+        # print the pattern
         print(pattern)
+        # Set spaces = spaces + 1
         spaces += 1
 
 pattern_draw_2()
