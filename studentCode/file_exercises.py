@@ -320,7 +320,7 @@ def golf_score_writer():
     # set path to save the file to
     filename = 'golf.txt'
     # initialize a dictionary to store input values // key = name and value = score
-    scores = {}
+    player_scores = dict()
     # initialize a value for continuous user input
     loop_check = 'yes'
 
@@ -330,7 +330,7 @@ def golf_score_writer():
         # Prompt for the player's score
         golf_score = int(input('Enter golfer\'s score: ')
         # add the player's name and score to the list
-        scores[player_name] = golf_score
+        player_scores[player_name] = golf_score
         # Prompt to continue entering names/scores
         loop_check = input('\nWould you like to enter another golfer\'s score? ')
             # check if continue loop check is no or n
@@ -342,7 +342,7 @@ def golf_score_writer():
     # use with to auto close the file when the with statment block completes
     with open(path + filename, 'w') as outfile:
         # iterate over the items in scores
-        for golfer, score in scores.items:
+        for golfer, score in player_scores.items():
             # Write the player's name and score to the file
             outfile.write(f'{golfer},{score}\n')
 
