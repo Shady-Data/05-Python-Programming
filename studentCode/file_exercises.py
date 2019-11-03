@@ -263,7 +263,7 @@ def random_number_file_reader():
         print(e)
         print('Exiting')
 
-random_number_file_reader()
+# random_number_file_reader()
 
 # 9. Exception Handing
 # Modify the program that you wrote for Exercise 6 so it handles the following exceptions:
@@ -328,13 +328,13 @@ def golf_score_writer():
         # Prompt for the player's name
         player_name = input('\nEnter the golfer\'s name: ')
         # Prompt for the player's score
-        golf_score = int(input('Enter golfer\'s score: ')
+        golf_score = int(input('Enter golfer\'s score: '))
         # add the player's name and score to the list
         player_scores[player_name] = golf_score
         # Prompt to continue entering names/scores
         loop_check = input('\nWould you like to enter another golfer\'s score? ')
-            # check if continue loop check is no or n
-            if loop_check.lower() == 'no' or loop_check.lower() == 'n':
+        # check if continue loop check is no or n
+        if loop_check.lower() == 'no' or loop_check.lower() == 'n':
                 # Set loop check to '' to exit the loop
                 loop_check = ''
     

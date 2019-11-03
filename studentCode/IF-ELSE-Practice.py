@@ -135,6 +135,11 @@ def magic_dates():
         else:
             print('Error')
             break
+
+    if date[0] == date[1] * date[2]:
+        print(f'{date[1]}/{date[2]}/{date[0]} is a magic date.')
+    else:
+        print(f'{date[1]}/{date[2]}/{date[0]} is not a magic date.')
     
 def get_date_entry(p_type, p_date):
     # define dictionary for valid inputs
@@ -157,8 +162,9 @@ def get_date_entry(p_type, p_date):
     month_abbreviations = []
     # iterate over months items to append to respective lists
     for month in months.keys():
-        month_names[months[month]['num']] = month
-        month_abbreviations.append(months['month']['abbrev'])
+        # assign the month to its num key value
+        month_names[str(months[month]['num'])] = month
+        month_abbreviations.append(months[month]['abbrev'])
     # get user input for type
     if p_type == 'year':
         user_input = int(input('Please enter a 2 digit year: '))
@@ -167,8 +173,25 @@ def get_date_entry(p_type, p_date):
         return user_input
     elif p_type == 'month':
         user_input = input('Please enter a month: ')
-        while user_input not in month_names.keys() and user_input not in month_names.values() and user_input not in month_abbreviations 
+        while user_input not in month_names.keys() and user_input not in month_names.values() and user_input not in month_abbreviations:
+            user_input = 'Invalid entry: Enter a valid month: '
+        if user_input.isdigit():
+            return int(user_input)
+        elif user_input in month_abbreviations:
+            return month_abbreviations.index(user_input) + 1
+        elif user_input in months.keys():
+            return months[user_input]['num']
+    elif p_type == 'day':
+        if p_date[0] % 4 == 0 and p_date[1] == 2:
+            max_days = months[month_names[str(p_date[1])]]['leap_year']
+        else:
+            max_days = months[month_names[str(p_date[1])]]['days']
+        user_input = int(input(f'Please enter a day up to {max_days}: '))
+        while user_input < 0 or user_input > max_days:
+            user_input = int(input(f'Invalid entry: Enter a valid day within {max_days}: '))
+        return user_input
 
+# magic_dates()
 
 # 5. Color Mixer
 
@@ -247,8 +270,39 @@ print('--------------')
 
 # Design a change-counting game that gets the user to enter the number of coins required to make exactly one dollar. The program should ask the user to enter the number of pennies, nickels, dimes, and quarters. If the total value of the coins entered is equal to one dollar, the program should congratulate the user for winning the game. Otherwise, the program should display a message indicating whether the amount entered was more than or less than one dollar.
 
-# def dollar_game():
+def dollar_game():
+    # Initialize a dictionary with keys for each coin type
+    coins_dict = {'pennies': {'amount': -1, 'value': 0.01}, 'nickels': {'amount': -1, 'value': 0.05}, 'dimes': {'amount': -1, 'value': 0.10}, 'quarters': {'amount': -1, 'value': 0.25}}
+    coin_totals = []
+    # iterate through each coin to assign amounts
+    for coin in coins_dict:
+        # continuously request input until a valid, non-negative, number is entered:
+        while coins_dict[coin]['amount'] < 0:
+            # Prompt user for the number of coins to enter
+            coins_dict[coin]['amount'] = int(input(f'Enter the number of {coin} you wish to play: '))
 
+    # iterate through each coin again to get the value of the coins
+    for coin in coins_dict:
+        # append total value into coin_totals list
+        coin_totals.append(coins_dict[coin]['amount'] * coins_dict[coin]['value'])
+    # Check if the sum of coins is == 1.00
+    if sum(coin_totals) == 1.00:
+        # Display win message
+        print('\nYou Win!')
+    # Check if the sum of coins is less than 1.00
+    elif sum(coins_totals) < 1.00:
+        # Display less than message
+        print('\nYou have less than $1.00')
+    # Check if the sum of coins is greater than 1.00
+    elif sum(coins_totals) > 1.00:
+        # Display more than message
+        print('\nYou have more than $1.00')
+    # else
+    else:
+        # Error message if 'somehow' the previous conditions fail
+        print('\nError: you shouldn\'t be seeing this')
+
+# dollar_game()
 
 # 7. Book Club Points
 

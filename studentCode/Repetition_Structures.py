@@ -194,14 +194,73 @@ def draw_table_celsius_fahr():
 # print('----------------------')
 
 # 7. Pennies for Pay
-# Write a program that calculates the amount of money a person would earn over a period of time if his or her salary is one penny the first day, two pennies the second day, and continues to double each day. The program should ask the user for the number of days. Display a table showing what the salary was for each day, and then show the total pay at the end of the period. The output should be displayed in a dollar amount, not the number of pennies.
+# Write a program that calculates the amount of money a person would earn over a period of time if his or her salary is one penny the first day,
+# two pennies the second day, and continues to double each day. The program should ask the user for the number of days.
+# Display a table showing what the salary was for each day, and then show the total pay at the end of the period.
+# The output should be displayed in a dollar amount, not the number of pennies.
 
 def pennies_for_pay():
-    
+    # Prompt user for the number of days
+    num_days = int(input('Please enter the number of days to calculate pay for: '))
+    # set the starting pay to .01 for one penny
+    pay_day = 0.01
+    # initialize the total accumalator
+    total_pay = 0
+
+    # Display the table headers 
+    print("╔═══════╤═════════╗")
+    print("║  Day  |   Pay   ║")
+    print("╠═══════╪═════════╣")
+    # iterate over a range of 1 to the number of days + 1
+    for day in range(1, num_days + 1):
+        # print the current day and pay for that day
+        print(f'║{day:^7}|${pay_day:>8.2f}║')
+        # Add current day's pay to the total
+        total_pay += pay_day
+        # calculate the next day's pay
+        pay_day *= 2
+
+    # print the last line in the table
+    print("╚═══════╧═════════╝")
+    # print the total pay over the period
+    print(f'You will be paid ${total_pay:.2f} over a period of {num_days} days.')
+
+# call pennies_for_pay
+# pennies_for_pay()
 
 # 8. Sum of Numbers
-# Write a program with a loop that asks the user to enter a series of positive numbers. The user should enter a negative number to signal the end of the series. After all the positive numbers have been entered, the program should display their sum.
+# Write a program with a loop that asks the user to enter a series of positive numbers. The user should enter a negative number to signal the end of the series.
+# After all the positive numbers have been entered, the program should display their sum.
 
+def sum_of_nums():
+    # initialize the total variable
+    total_sum = 0
+    # set a sentinal value for loop
+    num_input = 0.01
+
+    print("Enter numbers to sum together.\nEnter a negative number to finish,\n")
+    # coninously grab user input until a negative number is entered
+    while num_input >= 0:
+        # Prompt user for a positive number and convert it to a float
+        num_input = input("Enter a positve number: ")
+        # if user input is blank or negative
+        if num_input == '' or float(num_input) < 0:
+            # set the num_input to -1
+            num_input = -1
+            # break out of the loop
+            break
+        # else
+        else:
+            #set num_input to float
+            num_input = float(num_input)
+            # add the user input to the total accumalator
+            total_sum += num_input
+
+    # Display the total of all numbers entered.
+    print(f'The sum of all numbers entered is {total_sum:f}.')
+
+# call sum_of_numbers
+# sum_of_nums()
 
 
 # 9. Write a program that uses nested loops to draw this pattern:
@@ -258,4 +317,4 @@ def pattern_draw_2():
         # Set spaces = spaces + 1
         spaces += 1
 
-pattern_draw_2()
+# pattern_draw_2()

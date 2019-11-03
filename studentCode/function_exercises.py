@@ -5,14 +5,19 @@
 # ![image](https://user-images.githubusercontent.com/47218880/67329523-99b2e300-f4e0-11e9-8a30-3f31fbd76ae1.png)
 
 def kilometer_convert():
+    # call get_kilometers and set the return to the kilometers variable
     kilometers = get_kilometers()
+    # call kilometers2miles with the kilometers varible and set the result to miles
     miles = kilometers2miles(kilometers)
+    # Display the miles return from the kilometers conversion calculation
     print(f"{kilometers}km converts to {miles:.2f}mi")
 
 def get_kilometers():
+    # Prompt the user for kilometers, convert it to a float, and return it
     return float(input('Enter the distance in kilometers: '))
 
 def kilometers2miles(p_kilometers):
+    # Takes the kilometers parameter and returns the product of kilometers * 0.6214
     return p_kilometers * 0.6214
 
 # kilometer_convert()
@@ -23,14 +28,19 @@ def kilometers2miles(p_kilometers):
 # Many financial experts advise that property owners should insure their homes or buildings for at least 80 percent of the amount it would cost to replace the structure. Design a modular program that asks the user to enter the replacement cost of a building and then displays the minimum amount of insurance he or she should buy for the property.
 
 def insurance_calc():
+    # call get_building_replace_cost and assign the returned value to a variable
     bldg_cost = get_building_replace_cost()
+    # call get_80_percent with the bldg cost variable and assign the returned value to a variable
     min_insurance = get_80_percent(bldg_cost)
+    # Display the minimal amount of insurance message
     print("You should get insurance that covers at least ${:.2f}".format(min_insurance))
 
 def get_building_replace_cost():
+    # Prompt the user for the replacement cost of a building and return the float converted value
     return float(input("What is the replacement cost of the building?: "))
 
 def get_80_percent(p_amount):
+    # Take the p_amount parameter and returns the product of the amount * 0.8 (80% of the amount)
     return p_amount * 0.8
 
 # insurance_calc()
