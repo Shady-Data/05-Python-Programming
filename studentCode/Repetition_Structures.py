@@ -208,25 +208,25 @@ def pennies_for_pay():
     total_pay = 0
 
     # Display the table headers 
-    print("╔═══════╤═════════╗")
-    print("║  Day  |   Pay   ║")
-    print("╠═══════╪═════════╣")
+    print("╔═══════╤═══════════════╗")
+    print("║  Day  |      Pay      ║")
+    print("╠═══════╪═══════════════╣")
     # iterate over a range of 1 to the number of days + 1
     for day in range(1, num_days + 1):
         # print the current day and pay for that day
-        print(f'║{day:^7}|${pay_day:>8.2f}║')
+        print(f'║{day:^7}|${pay_day:>14,.2f}║')
         # Add current day's pay to the total
         total_pay += pay_day
         # calculate the next day's pay
         pay_day *= 2
 
     # print the last line in the table
-    print("╚═══════╧═════════╝")
+    print("╚═══════╧═══════════════╝")
     # print the total pay over the period
-    print(f'You will be paid ${total_pay:.2f} over a period of {num_days} days.')
+    print(f'You will be paid ${total_pay:,.2f} over a period of {num_days} days.')
 
 # call pennies_for_pay
-# pennies_for_pay()
+pennies_for_pay()
 
 # 8. Sum of Numbers
 # Write a program with a loop that asks the user to enter a series of positive numbers. The user should enter a negative number to signal the end of the series.

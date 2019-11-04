@@ -347,7 +347,7 @@ def golf_score_writer():
             outfile.write(f'{golfer},{score}\n')
 
 # call golf writer
-golf_score_writer()
+# golf_score_writer()
 
 def golf_score_reader():
     '''
@@ -359,7 +359,7 @@ def golf_score_reader():
     try:
         # Open filename to write
         # use with to auto close the file when the with statment block completes
-        with open(path + filename, 'w') as outfile:
+        with open(path + filename, 'r') as in_file:
             # print a header to make data easier to read
             print('------------------------------')
             print('|       Golfer       | Score |')
@@ -377,4 +377,4 @@ def golf_score_reader():
         print('Exiting')
 
 # call golf reader
-golf_score_reader()
+# golf_score_reader()
