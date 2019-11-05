@@ -296,7 +296,7 @@ def largest_rows_columns():
         # Display the largest column
         print(f'largest column index: {calc_columns.index(highest_column)}')
 
-# largest_rows_columns()
+largest_rows_columns()
 
 # ​'''
 # 8. (Game: play a tic-tac-toe game) In a game of tic-tac-toe, two players take turns
@@ -317,6 +317,7 @@ def tic_tac_toe():
         [' ', ' ', ' '],
         [' ', ' ', ' '],
     ]
+
     # intialize the turn accumalator
     turn = 1
     # initialize a winner found flag
@@ -329,8 +330,8 @@ def tic_tac_toe():
         # Check if player 1's ('X') or player 2's ('O') turn
         if turn % 2 == 1:
             # get player 1's ('X') move
-            
-            
+            play = get_play('X')
+
 def show_board(p_board):
     # Iterates through the board parameter and displays the board
     # (WIP)add screen clear before printing

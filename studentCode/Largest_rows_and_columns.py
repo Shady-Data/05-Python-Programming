@@ -110,4 +110,4 @@ def largest_rows_columns():
         # Display the largest column
         print(f'largest column index: {calc_columns.index(highest_column)}')
 
-# largest_rows_columns()
+largest_rows_columns()
