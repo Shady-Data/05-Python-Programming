@@ -1,3 +1,5 @@
+from random import randint
+
 '''
  7. (Largest rows and columns) Write a program that randomly fills in 0s and 1s into
 a matrix, prints the matrix, and finds the rows and columns with the most

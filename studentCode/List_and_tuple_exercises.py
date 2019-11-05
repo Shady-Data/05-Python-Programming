@@ -296,7 +296,7 @@ def largest_rows_columns():
         # Display the largest column
         print(f'largest column index: {calc_columns.index(highest_column)}')
 
-largest_rows_columns()
+# largest_rows_columns()
 
 # ​'''
 # 8. (Game: play a tic-tac-toe game) In a game of tic-tac-toe, two players take turns
@@ -324,13 +324,31 @@ def tic_tac_toe():
     winner = False
     
     # Continuosly get input until winner is found or board is filled
-    while not winner or turn > 10:
+    while not winner or turn >= 10:
         # display the current game board
         show_board(board)
         # Check if player 1's ('X') or player 2's ('O') turn
         if turn % 2 == 1:
             # get player 1's ('X') move
-            play = get_play('X')
+            play = get_play('X', board)
+        else:
+            # get player 1's ('O') move
+            play = get_play('O', board)
+        # add play to board
+        board = update_board(board, play)
+        # check the updated board for a winner
+        winner = check_tictactoe_board(board)
+        # increment the turn
+        turn += 1
+
+    # check if winner is not False
+    if winner != False:
+        # display the winner message
+        print(f'\n\t{winner} WINS!')
+    # else max turn limit exceeded / all possible values filled and all board checks returned false
+    else:
+        # display tie message
+        print('\n\tDRAW!')
 
 def show_board(p_board):
     # Iterates through the board parameter and displays the board
@@ -357,3 +375,100 @@ def show_board(p_board):
             row_sep = '-' * len(board_row)
             # print a row seperator
             print(row_sep)
+
+def get_play(p_player, p_board):
+    # get valid plays for board
+    valid_plays = get_valid_plays(p_board)
+    # initialize the variable to store the input
+    play = -1
+    # Display player turn
+    print(f'\n\t{p_player} it\'s your turn.')
+    # While play is not in valid plays
+    while play not in valid_plays:
+        # prompt user for input
+        try:
+            print('Available Plays:', valid_plays)
+            play = int(input('Where do you want to play?: '))
+        # if in error, reset play for loop
+        except ValueError:
+            print('Error: Invalid input.')
+            play = -1
+    # return the p_player and the play in a list
+    return [p_player, play]
+
+
+def get_valid_plays(p_board):
+    # initialize a list to return
+    available_plays = []
+    # initialize an accumalator to assign to coordinates
+    plays = 1
+    
+    # iterate through the rows of the board
+    for row in p_board:
+        # iterate through each column in the board row
+        for column in row:
+            # check if row, column has any plays in it
+            if column != 'X' or column != 'O':
+                # append the available plays if not played
+                available_plays.append(plays)
+            # increment the plays accumalator
+            plays += 1
+
+    # return the list of available plays
+    return available_plays
+
+def update_board(p_board, p_play):
+    '''
+    takes a board matrix parameter and updates it based on the play parameter
+    p_play[0] = 'X' or 'O'
+    p_play[1] = value to update
+    '''
+    # initialize a counter to locate the space to update
+    locator = 1
+    # iterate through the rows of the board
+    for row in range(len(p_board)):
+        # iterate over each column of the board row
+        for column in range(len(p_board[row])):
+            # check if the locator == play
+            if locator == p_play[1]:
+                # update the board with the play
+                p_board[row][column] = p_play[0]
+                # return the new board once the board has been updated
+                return p_board
+            # increment the locator
+            locator += 1
+    
+    # if no change occurs and loop completes
+    print('No change to board.')
+    # return the board
+    return p_board
+
+def check_tictactoe_board(p_board):
+    '''
+    Takes a 3x3 matrix board in a parameter and checks the columns, rows, and diagonals for 3 consecutive X's or O's
+    returns the winner, ('X','O') if any one condition is true, otherwise returns False.
+    '''
+    # initialize lists containing the possible win conditions
+    top_row = [p_board[0][0], p_board[0][1], p_board[0][2]]
+    middle_row = [p_board[1][0], p_board[1][1], p_board[1][2]]
+    bottom_row = [p_board[2][0], p_board[2][1], p_board[2][2]]
+    first_column = [p_board[0][0], p_board[1][0], p_board[2][0]]
+    second_column = [p_board[0][1], p_board[1][1], p_board[2][1]]
+    third_column = [p_board[0][2], p_board[1][2], p_board[2][2]]
+    diag_tlbr = [p_board[0][0], p_board[1][1], p_board[2][2]]
+    diag_trbl = [p_board[0][2], p_board[1][1], p_board[2][0]]
+    win_conditions = [top_row, middle_row, bottom_row, first_column, second_column, third_column, diag_tlbr, diag_trbl]
+    # initialize a flag to return
+    winner = False
+    # Iterate through each of the win_conditions
+    for condition in win_conditions:
+        # Check if the first value is an 'X' or an 'O' // removes default values from the possible win conditions
+        if condition[0] == 'X' or condition[0] == 'O':
+            # Check if all elements are the same
+            if condition[0] == condition[1] and condition[1] == condition[2]:
+                # set the winner to 'X' or 'O'
+                winner = condition[0]
+    # return winner
+    return winner
+    
+tic_tac_toe()
