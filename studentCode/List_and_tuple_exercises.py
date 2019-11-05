@@ -213,7 +213,18 @@ def largest_rows_columns():
         # append the built row to the matrix
         matrix.append(m_row)
     
-    print(matrix)
+    # for better formatting add a blank print statement
+    print('')
+    # Iterate through each row to print the matrix
+    for print_row in matrix:
+        # Initialize a variable to represent the matrix in string format
+        row_str_rep = ''
+        # iterate for each element in the row
+        for print_char in print_row:
+            # add the string value of the element to the string
+            row_str_rep += str(print_char)
+        # display the rows, one row per line
+        print(row_str_rep)
 
     # reading the matrix
     # initialize a new list to store the results of ones in each row
@@ -232,18 +243,58 @@ def largest_rows_columns():
                 # increment the column counter
                 calc_columns[index] += 1
 
-    print(calc_rows)
-    print(calc_columns)
+    # assign the max of calcs rows to a variable
+    highest_row = max(calc_rows)
     # Check if only one occurance of max value in row
-    if calc_rows.count(max(calc_rows)) > 1:
+    if calc_rows.count(highest_row) > 1:
         # initial a counter to keep track of removed indexes
         removed_count = 0
         # initialize a list to store multiple indexes
         max_rows = []
         # continuously pull and del indexes until the count of max value == 0
-        while 
-    # Display the largest row
-    print(f'{}')
+        while calc_rows.count(highest_row) > 0:
+            # assign the first index of the max of calc_rows to a variable
+            max_val_index = calc_rows.index(highest_row)
+            # append the first max value index to the list + the counter of removed indexes
+            max_rows.append(str(max_val_index + removed_count))
+            # del the index of the first max value
+            del(calc_rows[max_val_index])
+            # increment counter of removed indexes
+            removed_count += 1
+        # convert the list to a string for printing
+        string_rep_rows = ', '.join(max_rows)
+        # print the rows with the greatest value
+        print(f'\nlargest row indexes: {string_rep_rows}')
+    # if only 1 instance
+    else:
+        # Display the largest row
+        print(f'\nlargest row index: {calc_rows.index(highest_row)}')
+    # assign the max of calcs columns to a variable
+    highest_column = max(calc_columns)
+    # check if only 1 occurance of max value in column
+    if calc_columns.count(highest_column) > 1:
+        # initial a counter to keep track of removed indexes
+        removed_count = 0
+        # initialize a list to store multiple indexes
+        max_columns = []
+        # continuously pull and del indexes until the count of max value == 0
+        while calc_columns.count(highest_column) > 0:
+            # assign the first index of the max of calc_rows to a variable
+            max_val_index = calc_columns.index(highest_column)
+            # append the first max value index to the list + the counter of removed indexes
+            max_columns.append(str(max_val_index + removed_count))
+            # del the index of the first max value
+            del(calc_columns[max_val_index])
+            # increment counter of removed indexes
+            removed_count += 1
+        # convert the list to a string for printing
+        string_rep_columns = ', '.join(max_columns)
+        # print the columns with the greatest value
+        print(f'largest column indexes: {string_rep_columns}')
+    # if only 1 instance
+    else:
+        # Display the largest column
+        print(f'largest column index: {calc_columns.index(highest_column)}')
 
 # largest_rows_columns()
 
@@ -258,3 +309,50 @@ def largest_rows_columns():
 # token. Whenever a token is entered, the program redisplays the board on the
 # console and determines the status of the game (win, draw, or continue).
 # '''
+
+def tic_tac_toe():
+    # build the playspace
+    board = [
+        [' ', ' ', ' '],
+        [' ', ' ', ' '],
+        [' ', ' ', ' '],
+    ]
+    # intialize the turn accumalator
+    turn = 1
+    # initialize a winner found flag
+    winner = False
+    
+    # Continuosly get input until winner is found or board is filled
+    while not winner or turn > 10:
+        # display the current game board
+        show_board(board)
+        # Check if player 1's ('X') or player 2's ('O') turn
+        if turn % 2 == 1:
+            # get player 1's ('X') move
+            
+            
+def show_board(p_board):
+    # Iterates through the board parameter and displays the board
+    # (WIP)add screen clear before printing
+    # Iterate through each row in the board by index
+    for row_ind in range(len(p_board)):
+        # intialize a variable to store the row to print
+        board_row = ''
+        # iterate through each element in the row
+        for char_ind in range(len(p_board[row_ind])):
+            # check if the this is the center of the edge of the board
+            if char_ind == 0 or char_ind == len(p_board[row_ind]) -1:
+                # add ' ' char ' ' to the row to print
+                board_row += ' ' + p_board[row_ind][char_ind] + ' '
+            # else
+            else:
+                # add '| ' + char + ' |' to the row to print
+                board_row += '| ' + p_board[row_ind][char_ind] + ' |'
+        # Display the row
+        print(board_row)
+        # check if not the last row of the board
+        if row_ind != len(p_board[row_ind]) - 1:
+            # build a row seperator by the length of the board row
+            row_sep = '-' * len(board_row)
+            # print a row seperator
+            print(row_sep)
