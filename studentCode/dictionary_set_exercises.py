@@ -259,7 +259,7 @@ def file_decryption():
             ascii_printable.append(char)
     ascii_printable = ''.join(ascii_printable)
     
-    # iterate through the lines to find a len(line) == len(ascii_printable) and len(set(linechars)) == len(asciiprintable)
+    # iterate through the lines to find a len(line) == len(ascii_printable) and len(set(linechars)) == len(ascii_printable)
     # this will find our randomly generated encryption key for the file
     for index, cypher_line in enumerate(cypher_text):
         if len(cypher_line) == len(ascii_printable):
@@ -333,11 +333,11 @@ def word_frequency():
     # initialze a blank dictionary to fill
     words = {}
     # open the file to read
-    in_file = open('turtlehelp.txt', 'r')
+    in_file = open('plain_text.txt', 'r')
     # iterate through each line in the file
     for line in in_file.readlines():
         # iterate each word in the line
-        for word in line.split():
+        for word in line.replace(',', '').replace('.', '').replace('\'', '').replace('!', '').replace('?', '').split():
             # Check if the word is in the words dictionary keys
             if word in words.keys():
                 # increment the value of the word by 1
@@ -349,7 +349,7 @@ def word_frequency():
     in_file.close()
 
     # open a file to write the count to
-    out_file = open('turtlehelp_word_count.txt', 'w')
+    out_file = open('plain_text_word_count.txt', 'w')
     # iterate through the dictionary
     for word, count in words.items():
         # write the word and the count to the file, one entry per line
@@ -379,13 +379,13 @@ def file_analysis():
         # iterate through the lines of the file
         for line in file_1.readlines():
             # strip the new line, split the line by ' ', and add the resulting list to the file_1_unique set
-            file_1_unique.update(line.rstrip('\n').split(' '))
+            file_1_unique.update(line.rstrip().replace(',', '').replace('.', '').replace('\'', '').replace('!', '').replace('?', '').split(' '))
     # open the second file to be read
     with open('d_plain_text.txt', 'r') as file_2:
         # iterate through the lines of the file
         for line in file_2.readlines():
             # strip the new line, split the line by ' ', and add the resulting list to the file_2_unique set
-            file_2_unique.update(line.rstrip('\n').split(' '))
+            file_2_unique.update(line.rstrip().replace(',', '').replace('.', '').replace('\'', '').replace('!', '').replace('?', '').split(' '))
 
     # Populate a new set that contains all of the unique elements in both sets
     all_unique_elements = file_1_unique | file_2_unique
@@ -400,14 +400,14 @@ def file_analysis():
 
     # Display the results
     print('All unique words in both files: ')
-    print(all_unique_elements)
+    pprint(all_unique_elements)
     print('\nUnique words common to both files: ')
-    print(common_elements)
+    pprint(common_elements)
     print('\nUnique words only in the first file: ')
-    print(file_1_only_elements)
+    pprint(file_1_only_elements)
     print('\nUnique words only in the second file: ')
-    print(file_2_only_elements)
+    pprint(file_2_only_elements)
     print('\nUnique words that are in either file, but not in both files: ')
-    print(combined_differences)
+    pprint(combined_differences)
 
-file_analysis()
+# file_analysis()
