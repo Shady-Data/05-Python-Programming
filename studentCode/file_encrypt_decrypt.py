@@ -69,6 +69,7 @@ def random_char():
         rand = randint(0, 10000)
     return chr(rand)
 
+
 def file_decryption():
     # read the contents of the file to be decrypted
     cypher_text = []
@@ -117,5 +118,6 @@ def file_decryption():
         for line in plain_text:
             out_file.write(line + '\n')
 
+
 file_encryption()
-# file_decryption()
+file_decryption()

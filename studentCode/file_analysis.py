@@ -37,7 +37,7 @@ def file_analysis():
     # Populate a new set with contents that are only in file 1's set
     file_2_only_elements = file_2_unique - file_1_unique
     # Populate a new set with all of the unique elements that are in 1 or the other set, but not contained in both sets
-    combined_differences = file_1_only_elements | file_2_only_elements
+    combined_differences = file_1_unique ^ file_2_unique
 
     # Display the results
     print('All unique words in both files: ')
