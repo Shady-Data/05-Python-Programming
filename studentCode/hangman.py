@@ -70,6 +70,7 @@ def main():
     # initialize an empty list to store guessed letters
     guessed_letters = []
     # load the hanged man image database
+    computer = get_player()
     try:
         with open('hangedman.dat', 'rb') as infile:
             hanged_man = pickle.load(infile)
@@ -83,8 +84,13 @@ def main():
         display_hangedman(guesses_remaining)
         # print the currently guessed letters in the word and '_' if not guessed yet
         display_guessed_word(guessed_word)
-        # get the letter guess from the user
-        guessed_letters.append(get_letter(guessed_letters))
+        # if computer is playing
+        if computer:
+            # get randomly selected letter
+            guessed_letters.append(get_comp_guess(guessed_letters))
+        else:
+            # get the letter guess from the user
+            guessed_letters.append(get_letter(guessed_letters))
         # check if latest guess is in valid letters set
         if guessed_letters[-1] in valid_letters:
             # update the word with the letter
@@ -103,7 +109,7 @@ def main():
         # display the loss message
         print('\t\tYou Lose.')
         # print the correct word
-        print(f'The word was {hangman_word}.')
+        print(f'The word was {hangman_word}')
     # else if guesses remaining is not 0 and guessed word is equal to chosen word:
     elif guessed_word == hangman_word:
         print(f'\t    {guessed_word}')
@@ -182,7 +188,7 @@ from random import randint
 def get_random_word():
     # Returns a random word selected from the wordlist file
     try: 
-        with open('wordlist.txt', 'r') as wordlist_file:
+        with open('hangman_words.txt', 'r') as wordlist_file:
             wordlist = wordlist_file.readlines()
         rdm_word = wordlist[randint(0, len(wordlist))]
         while len(rdm_word) < 4:
@@ -190,6 +196,22 @@ def get_random_word():
         return rdm_word.upper()
     except IOError as e:
         print(e)
+
+def get_comp_guess(p_guessed_letters):
+    # generates a randomly selected guess from available letters
+    # Populate a list of letters for the computer to choose from
+    available_letters = [char for char in string.ascii_uppercase if char not in p_guessed_letters]
+    # return a letter from available letters by a random integer index
+    return available_letters[randint(0, len(available_letters) - 1)]
+
+def get_player():
+    # Returns a boolean value if the computer is playing
+    # prompts if user is playing, or computer
+    comp = input('Will the computer be playing? (y/n): ')
+    if comp == 'y' or comp == 'yes':
+        return True
+    else:
+        return False
 
 
 main()
