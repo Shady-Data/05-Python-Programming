@@ -309,7 +309,9 @@ def largest_rows_columns():
 # token. Whenever a token is entered, the program redisplays the board on the
 # console and determines the status of the game (win, draw, or continue).
 # '''
-
+'''
+***Needs work***
+'''
 def tic_tac_toe():
     # build the playspace
     board = [
@@ -324,7 +326,7 @@ def tic_tac_toe():
     winner = False
     
     # Continuosly get input until winner is found or board is filled
-    while not winner or turn >= 10:
+    while not winner and not turn > 9:
         # display the current game board
         show_board(board)
         # Check if player 1's ('X') or player 2's ('O') turn
@@ -408,7 +410,7 @@ def get_valid_plays(p_board):
         # iterate through each column in the board row
         for column in row:
             # check if row, column has any plays in it
-            if column != 'X' or column != 'O':
+            if column != 'X' and column != 'O':
                 # append the available plays if not played
                 available_plays.append(plays)
             # increment the plays accumalator
