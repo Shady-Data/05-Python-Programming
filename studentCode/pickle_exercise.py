@@ -9,10 +9,9 @@ when the user exits the program. Each time the program starts, it should retriev
 
 import pickle
 
-
 def main():
     global database
-    # try to open the data store
+    # try to open the datastore
     try:
         with open('datastore.dat', 'rb') as in_file:
             database = pickle.load(in_file)
@@ -33,6 +32,8 @@ def main():
     menu_select = 0
     # Continuously accept input until user finishes
     while menu_select != 5:
+        # add a blank line before the menu print
+        print()
         # Display the menu
         for key in menu.keys():
             print(' {} : {}'.format(key, menu[key]['description']))
@@ -42,6 +43,7 @@ def main():
         while menu_select not in menu.keys():
             print('Invalid selection')
             menu_select = get_menu_entry()
+        # skip function call if menu entry is the same as while loop exit
         if menu_select != 5:
             # call the menu's function
             menu[menu_select]['function']()
@@ -52,7 +54,7 @@ def main():
 
 
 def get_menu_entry():
-    # continuously calls for input until an int converted value is entered
+    # Prompt user for menu choice and convert it to an int
     try:
         user_input = int(input('\nEnter the number of the menu option: '))
     except ValueError:
@@ -68,7 +70,7 @@ def find_email():
     # check if the name is in the database keys
     if search in database.keys():
         # print the person's email
-        print(f'\n{search}\'s email:\t{database[search]}\n')
+        print(f'\n{search}\'s email:\t{database[search]}')
     else:
         # display no user found in keys
         print(f'\n{search} could not be found.')
@@ -91,6 +93,9 @@ def modify_email():
     if search in database.keys():
         # Prompt for the new email address
         database[search] = input(f'Enter the new email address for {search}: ')
+    else:
+        # display no user found in keys
+        print(f'\n{search} could not be found.')
 
 def delete_database_entry():
     # Prompt user for a name, checks if the name is in the database, and deletes the entry if the key exists
