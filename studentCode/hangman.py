@@ -115,12 +115,19 @@ def main():
 
 def get_word():
     # Prompt user for a word greater than 3 letters to be used for hangman
-    # (WIP) randomly select a word from a wordbank
+    # Or use a randomly select a word from a wordbank
     # (WIP) add valid word in dictionary check
-    user_input = input('Enter a secret word to play: ')
-    while len(user_input) < 4:
-        user_input = input('Word is too short.\nTry Again: ')
-    return user_input.upper()
+    # Prompt user if they want to use a word from the wordlist
+    use_wordlist = input('Would you like to use a randomly generated word? (y/n): ').lower()
+    # if yes return the random word
+    if use_wordlist == 'y' or use_wordlist == 'yes':
+        return get_random_word()
+    # Otherwise prompt user for the word to use.
+    else:
+        user_input = input('Enter a secret word to play: ')
+        while len(user_input) < 4:
+            user_input = input('Word is too short.\nTry Again: ')
+        return user_input.upper()
 
 def display_hangedman(p_guess):
     # Draws the current hangman image based on p_guess
@@ -169,6 +176,20 @@ def update_guessed_word(p_secret_word, p_guessed_word, p_letter):
             word_letter_list[ind] = char
     # return a string built from the updated p_guessed_word list
     return ''.join(word_letter_list)
+
+from random import randint
+
+def get_random_word():
+    # Returns a random word selected from the wordlist file
+    try: 
+        with open('wordlist.txt', 'r') as wordlist_file:
+            wordlist = wordlist_file.readlines()
+        rdm_word = wordlist[randint(0, len(wordlist))]
+        while len(rdm_word) < 4:
+            rdm_word = wordlist[randint(0, len(wordlist))]
+        return rdm_word.upper()
+    except IOError as e:
+        print(e)
 
 
 main()
