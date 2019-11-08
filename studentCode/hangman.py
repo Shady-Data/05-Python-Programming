@@ -46,9 +46,62 @@ Bonus:
 """
 import pickle
 import string
+from random import randint
 
 def main():
-    global hanged_man
+    global profile
+    # Main menu to run the game
+    menu = {
+        1 : {'desc' : 'Play Hangman', 'call' : play_hangman},
+        2 : {'desc' : 'Play # of Hangman games', 'call' : play_multi_hangman},
+        3 : {'desc' : 'Load Profile', 'call' : load_profile},
+        4 : {'desc' : 'View leaderboard', 'call' : view_leaderboard},
+        5 : {'desc' : 'Quit'}
+    }
+    # initialze the user choice to 0
+    menu_choice = 0
+    # load the profiles databaes
+    load_all_profiles()
+    # initialize profile with the default 'Guest'
+    profile = {'Name' : 'Guest', 'Wins' : 0, 'Games Played' : 0}
+    # loop menu until quit option is given
+    while menu_choice != 5:
+        # display the menu
+        print('\t\tMain Menu')
+        for key in menu.keys():
+            print(' {} : {}'.format(key, menu[key]['desc']))
+        # get player's menu choice
+        menu_choice = get_menu_choice(menu.keys())
+        # call menu choice function unless the menu_choice is 5
+        if menu_choice in menu.keys() and menu_choice != 5:
+            menu[menu_choice]['call']()
+
+    # if while loop is properly terminated
+    # call the update profile function if profile is loaded
+    update_all_profiles()
+    # print game exit message
+    print('Quitting')
+
+def get_menu_choice(p_valid_keys):
+    # get user's menu choice
+    # Prompt user for a menu choice
+    try:
+        user_input = int(input('What do you want to do? :'))
+        # if user input is not a key in valid keys
+        while user_input not in p_valid_keys:
+            # Prompt user for valid menu option
+            user_input = int(input(f'Invalid option!\nValid options are {p_valid_keys}\nEnter a valid option: '))
+    # if user input fails to convert to int
+    except ValueError as e:
+        # display the error message
+        print(f'Invalid option\n{e}')
+        # set user input to 0 and return to the menu
+        user_input = 0
+    # return user input
+    return user_input
+
+def play_hangman():
+    global hangman_art
     description = '''
     Hangman:
     Take turns guessing letters for either a random selected word or a player's specified word.
@@ -73,7 +126,7 @@ def main():
     computer = get_player()
     try:
         with open('hangedman.dat', 'rb') as infile:
-            hanged_man = pickle.load(infile)
+            hangman_art = pickle.load(infile)
     except IOError:
         print('hangedman.dat is missing exiting program')
         guesses_remaining = 0
@@ -110,11 +163,16 @@ def main():
         print('\t\tYou Lose.')
         # print the correct word
         print(f'The word was {hangman_word}')
+        # if profile loaded update profile games played
+        profile['Games Played'] += 1
     # else if guesses remaining is not 0 and guessed word is equal to chosen word:
     elif guessed_word == hangman_word:
         print(f'\t    {guessed_word}')
         # print the win message
         print('\t\tYou Win!')
+        # if profile loaded update profile games played and wins
+        profile['Games Played'] += 1
+        profile['Wins'] += 1
     else:
         # Error message
         print('Something went wrong. Loop exited without Win/Loss condition met.')
@@ -137,7 +195,7 @@ def get_word():
 
 def display_hangedman(p_guess):
     # Draws the current hangman image based on p_guess
-    for line in hanged_man[p_guess]:
+    for line in hangman_art[p_guess]:
         print('\t\t\t', line)
 
 def display_guessed_word(p_guessed_word):
@@ -183,8 +241,6 @@ def update_guessed_word(p_secret_word, p_guessed_word, p_letter):
     # return a string built from the updated p_guessed_word list
     return ''.join(word_letter_list)
 
-from random import randint
-
 def get_random_word():
     # Returns a random word selected from the wordlist file
     try: 
@@ -207,11 +263,94 @@ def get_comp_guess(p_guessed_letters):
 def get_player():
     # Returns a boolean value if the computer is playing
     # prompts if user is playing, or computer
-    comp = input('Will the computer be playing? (y/n): ')
+    comp = input('Will the computer be playing for you? (y/n): ')
     if comp == 'y' or comp == 'yes':
         return True
     else:
         return False
 
+def load_profile():
+    # calls the load all profiles function, prompts user for a name, and loads the associated profile
+    global profile
+    # prompt user for a name
+    user_input = input('Enter the profile name to load: ').title()
+    # if the name is in the database
+    if user_input in all_profiles.keys():
+        #set profile variable = all_profiles[user_input]
+        profile = all_profiles[user_input]
+    else:
+        #Prompt user if they wish to add the name to all_profiles
+        option = input(f'Profile not found. Do you wish to create {user_input}\'s profile? (y/n): ')
+        # if yes set defaults value to the profile
+        if option == 'y' or option == 'yes':
+            profile = {'Name' : user_input, 'Wins' : 0, 'Games Played' : 0}
+    # if no, return to menu and play as a guest
+        
+
+def load_all_profiles():
+    # loads a user's profile from a profiles.dat and adds it a global profile dictionary
+    global all_profiles
+    # Attempt to open the the profiles database
+    try:
+        with open('profiles.dat', 'rb') as in_file:
+            all_profiles = pickle.load(in_file)
+    # if the profiles database is missing or corrupt
+    except IOError as e:
+        # print missing messages
+        print(f'\n{e}')
+        print('Establishing new database.')
+        # create empty dictionary
+        all_profiles = {}
+
+def update_all_profiles():
+    # updates the all profiles database with users profile and writes it to profiles.dat
+    # If profile already in all profiles keys
+    if profile['Name'] in all_profiles.keys():
+        # update games played and wins record
+        all_profiles[profile['Name']]['Wins'] = profile['Wins']
+        all_profiles[profile['Name']]['Games Played'] = profile['Games Played']
+    else:
+        # add the profile to all_profiles
+        all_profiles[profile['Name']] = profile
+    # write the updated all_profiles to profiles.dat
+    with open('profiles.dat', 'wb') as out_file:
+        pickle.dump(all_profiles, out_file)
+
+def play_multi_hangman():
+    # Prompts user for a number of games to play
+    try:
+        num_games = int(input('How many games do you wish to play?: '))
+        for game in range(num_games):
+            # call play hangman
+            play_hangman()
+            if game < num_games - 1:
+                # prompt user if they are finished playing except on the last game
+                quit_playing = input('Start the next game? (y/n default=y):')
+                if quit_playing == 'n' or quit_playing == 'no':
+                    # break the loop and return to the menu
+                    break
+    except ValueError:
+        print('Invalid input! Returning to menu')
+
+def view_leaderboard():
+    # iterates through all profiles, sorted by wins, and prints them to a table
+    # update all profiles with the current running profile
+    update_all_profiles()
+    # display the table headers
+    print('╔════════════════════╤══════╗')
+    print("║       Name         | Wins ║")
+    print("╠════════════════════╪══════╣")
+    # iterate through all profiles and append them to a list
+    all_profiles_list = []
+    for name in all_profiles.keys():
+        all_profiles_list.append(all_profiles[name])
+    # sort the list by profile wins
+    all_profiles_list.sort(key=lambda n: n['Wins'], reverse=True)
+    # iterate through all profiles list
+    for profile in all_profiles_list:
+        # display the table entries
+        print('║{:^20}|{:^6}║'.format(profile['Name'], profile['Wins']))
+    # print the last line of the table
+    print('╚════════════════════╧══════╝')
 
 main()
