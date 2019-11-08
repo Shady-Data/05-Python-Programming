@@ -102,6 +102,7 @@ def get_menu_choice(p_valid_keys):
 
 def play_hangman():
     global hangman_art
+    global profile
     description = '''
     Hangman:
     Take turns guessing letters for either a random selected word or a player's specified word.
@@ -124,6 +125,10 @@ def play_hangman():
     guessed_letters = []
     # load the hanged man image database
     computer = get_player()
+    # if computer is the player
+    if computer == True:
+        # set profile to computer's
+        profile = all_profiles['Computer']
     try:
         with open('hangedman.dat', 'rb') as infile:
             hangman_art = pickle.load(infile)
