@@ -187,9 +187,9 @@ def get_word():
     # Or use a randomly select a word from a wordbank
     # (WIP) add valid word in dictionary check
     # Prompt user if they want to use a word from the wordlist
-    use_wordlist = input('Would you like to use a randomly generated word? (y/n): ').lower()
+    use_wordlist = input('Would you like to use a randomly generated word? (y/n) default = y: ').lower()
     # if yes return the random word
-    if use_wordlist == 'y' or use_wordlist == 'yes':
+    if use_wordlist == 'y' or use_wordlist == 'yes' or use_wordlist == '':
         return get_random_word()
     # Otherwise prompt user for the word to use.
     else:
@@ -260,6 +260,7 @@ def get_random_word():
 
 def get_comp_guess(p_guessed_letters):
     # generates a randomly selected guess from available letters
+    # *WIP* Add better letter guessing
     # Populate a list of letters for the computer to choose from
     available_letters = [char for char in string.ascii_uppercase if char not in p_guessed_letters]
     # return a letter from available letters by a random integer index
@@ -268,7 +269,7 @@ def get_comp_guess(p_guessed_letters):
 def get_player():
     # Returns a boolean value if the computer is playing
     # prompts if user is playing, or computer
-    comp = input('Will the computer be playing for you? (y/n): ')
+    comp = input('Will the computer be playing for you? (y/n) default = n: ')
     if comp == 'y' or comp == 'yes':
         return True
     else:
@@ -277,6 +278,8 @@ def get_player():
 def load_profile():
     # calls the load all profiles function, prompts user for a name, and loads the associated profile
     global profile
+    # save the current profile session
+    update_all_profiles()
     # prompt user for a name
     user_input = input('Enter the profile name to load: ').title()
     # if the name is in the database
@@ -290,7 +293,6 @@ def load_profile():
         if option == 'y' or option == 'yes':
             profile = {'Name' : user_input, 'Wins' : 0, 'Games Played' : 0}
     # if no, return to menu and play as a guest
-        
 
 def load_all_profiles():
     # loads a user's profile from a profiles.dat and adds it a global profile dictionary

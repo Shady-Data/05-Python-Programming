@@ -355,6 +355,8 @@ def tic_tac_toe():
 def show_board(p_board):
     # Iterates through the board parameter and displays the board
     # (WIP)add screen clear before printing
+    # initialize a counter
+    placeholder = 1
     # Iterate through each row in the board by index
     for row_ind in range(len(p_board)):
         # intialize a variable to store the row to print
@@ -363,12 +365,23 @@ def show_board(p_board):
         for char_ind in range(len(p_board[row_ind])):
             # check if the this is the center of the edge of the board
             if char_ind == 0 or char_ind == len(p_board[row_ind]) -1:
-                # add ' ' char ' ' to the row to print
-                board_row += ' ' + p_board[row_ind][char_ind] + ' '
+                # check if char is an X or O
+                if p_board[row_ind][char_ind] == 'X' or p_board[row_ind][char_ind] == 'O':
+                    # add ' ' char ' ' to the row to print
+                    board_row += ' ' + p_board[row_ind][char_ind] + ' '
+                else:
+                    # add ' ' placeholder ' ' to the row to print
+                    board_row += ' ' + str(placeholder) + ' '
             # else
             else:
-                # add '| ' + char + ' |' to the row to print
-                board_row += '| ' + p_board[row_ind][char_ind] + ' |'
+                if p_board[row_ind][char_ind] == 'X' or p_board[row_ind][char_ind] == 'O':
+                    # add '| ' + char + ' |' to the row to print
+                    board_row += '| ' + p_board[row_ind][char_ind] + ' |'
+                else:
+                    # add '| ' + placeholder + ' |' to the row to print
+                    board_row += '| ' + str(placeholder) + ' |'
+            # increment the counter
+            placeholder += 1
         # Display the row
         print(board_row)
         # check if not the last row of the board
@@ -389,7 +402,7 @@ def get_play(p_player, p_board):
     while play not in valid_plays:
         # prompt user for input
         try:
-            print('Available Plays:', valid_plays)
+            # print('Available Plays:', valid_plays)
             play = int(input('Where do you want to play?: '))
         # if in error, reset play for loop
         except ValueError:
