@@ -7,6 +7,11 @@ class Coin:
         # __attribute is private and can/should only be modifiable by class methods
         self.__sideup = 'Heads'
 
+    # The __str__ method returns a string
+    # indicating the object's state
+    def __str__(self):
+        return f'{self.__sideup} is showing'
+
     # methods are functions defined within a class
     def toss(self):
         if random.randint(0, 1) == 0:
