@@ -30,20 +30,26 @@ class CellPhone:
         self.__model = p_model
         self.__retail_price = p_msrp
 
+    # define set_manufact to modify the __manufact attribute, if necessary
     def set_manufact(self, p_manufact):
         self.__manufact = p_manufact
 
+    # define set_model to modify the __model attribute, if necessary
     def set_model(self, p_model):
         self.__model = p_model
 
+    # define set_retail_price to modify the __retail_price attribute, if necessary
     def set_retail_price(self, p_msrp):
         self.__retail_price = p_msrp
 
+    # define get_manufact to return the __manufact attribute
     def get_manufact(self):
         return self.__manufact
 
+    # define get_model to return the __model attribute
     def get_model(self):
         return self.__model
 
+    # define get_retail_price to return the __retail_price attribute
     def get_retail_price(self):
         return self.__retail_price
