@@ -19,3 +19,22 @@ class PersonalInformation:
 
     def set_address(self, p_address):
         self.__address = p_address
+
+    def set_age(self, p_age):
+        self.__age = p_age
+
+    def set_phone(self, p_phone):
+        self.__phone = p_phone
+
+    # define accessors/getters
+    def get_name(self):
+        return self.__name
+
+    def get_address(self):
+        return self.__address
+
+    def get_age(self):
+        return self.__age
+
+    def get_phone(self):
+        return self.__phone
