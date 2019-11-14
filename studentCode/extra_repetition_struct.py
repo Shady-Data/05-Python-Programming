@@ -205,7 +205,7 @@ def draw_multi_table(p_num):
     # Ensure turtle is not drawing
     turtle.penup()
     # goto starting position for the table
-    start = lambda y: (-(SIZE * (p_num + 1))/2, ((SIZE * (p_num + 1)) - (SIZE * y))/2)
+    start = lambda y: (-(SIZE * (p_num + 1))/2, ((SIZE * (p_num + 1)) - (2 * SIZE * y))/2)
     # iterate through the number of cells in the table that need to be drawn
     for row in range(p_num + 1):
         # goto the start of the row
@@ -223,11 +223,41 @@ def draw_multi_table(p_num):
             turtle.forward(SIZE)
 
 # call draw the draw table function
-draw_multi_table(12)
+# draw_multi_table(12)
 
 
 # 5. (Turtle: display a lattice) Write a program that displays an 18-by-18 lattice
-
+def draw_lattice(p_num):
+    # set a constant for the size of the boxes
+    SIZE = 40
+    # Optional set turtle shape
+    turtle.shape('turtle')
+    # optional set turtle speed
+    turtle.speed(0)
+    # optional set turtle colors (rainbow)
+    colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+    # optional set width of the line to be drawn
+    turtle.pensize(1)
+    # Ensure turtle is not drawing
+    turtle.penup()
+    # goto starting position for the table
+    start = lambda y: (-(SIZE * (p_num))/2, ((SIZE * (p_num)) - (2 * SIZE * y))/2)
+    # iterate through the number of cells in the table that need to be drawn
+    for row in range(p_num):
+        # goto the start of the row
+        turtle.goto(start(row))
+        for col in range(p_num):
+            # start drawing
+            turtle.pendown()
+            # draw the cell
+            for r in range(4):
+                turtle.forward(SIZE)
+                turtle.right(90)
+            # stop drawing
+            turtle.penup()
+            # move to the start of the next cell
+            turtle.forward(SIZE)
+# draw_lattice(17)
 
 
 # 6. (Turtle: plot the sine and cosine functions) Write a program that plots the sine
@@ -236,3 +266,53 @@ draw_multi_table(12)
 
 # 7. (Turtle: chessboard) Write a program to draw a chessboard
 
+def draw_chessboard():
+    # set a constant for the size of the boxes
+    SIZE = 40
+    # Optional set turtle shape
+    turtle.shape('turtle')
+    # optional set turtle speed
+    turtle.speed(0)
+    # optional set turtle colors (rainbow)
+    colors = ['blanched almond', 'saddle brown']
+    # optional set width of the line to be drawn
+    turtle.pensize(1)
+    # Ensure turtle is not drawing
+    turtle.penup()
+    # goto starting position for the table
+    start = lambda y: (-(SIZE * (8))/2, ((SIZE * (8)) - (2 * SIZE * y))/2)
+    # iterate through the number of cells in the table that need to be drawn
+    for row in range(8):
+        # goto the start of the row
+        turtle.goto(start(row))
+        for col in range(8):
+            if row % 2 == 0:
+                turtle.begin_fill()
+                # start drawing
+                turtle.pendown()
+                # draw the cell
+                turtle.color(colors[col % 2])
+                for r in range(4):
+                    turtle.forward(SIZE)
+                    turtle.right(90)
+                # stop drawing
+                turtle.penup()
+                turtle.end_fill()
+                # move to the start of the next cell
+                turtle.forward(SIZE)
+            else:
+                turtle.begin_fill()
+                # start drawing
+                turtle.pendown()
+                # draw the cell
+                turtle.color(colors[(col + 1) % 2])
+                for r in range(4):
+                    turtle.forward(SIZE)
+                    turtle.right(90)
+                # stop drawing
+                turtle.penup()
+                turtle.end_fill()
+                # move to the start of the next cell
+                turtle.forward(SIZE)
+
+draw_chessboard()
