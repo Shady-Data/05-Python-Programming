@@ -62,10 +62,14 @@ class ProductionWorker(Employee):
 '''
 
 class ShiftSupervisor(Employee):
-    def __init__(self, p_name, p_id_num, p_annual_salary):
+    def __init__(self, p_name, p_id_num, p_shift_num, p_annual_salary):
         super().__init__(p_name, p_id_num)
+        self.__shift_number = p_shift_num
         self.__annual_salary = p_annual_salary
         self.__annual_prod_bonus = 0
+
+    def set_shift_num(self, p_shift_num):
+        self.__shift_number = p_shift_num
 
     def set_annual_salary(self, p_annual_salary):
         self.__annual_salary = p_annual_salary
@@ -93,5 +97,14 @@ class ShiftSupervisor(Employee):
 
     def earned_prod_bonus(self, p_bonus):
         self.__annual_prod_bonus += p_bonus
+
+    def get_annual_salary(self):
+        return self.__annual_salary
+
+    def get_annual_prod_bonus(self):
+        return self.__annual_prod_bonus
+
+    def get_shift_num(self):
+        return self.__shift_number
 
         
