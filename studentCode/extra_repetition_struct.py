@@ -268,7 +268,7 @@ def draw_lattice(p_num):
 
 def draw_chessboard():
     # set a constant for the size of the boxes
-    SIZE = 40
+    SIZE = 100
     # Optional set turtle shape
     turtle.shape('turtle')
     # optional set turtle speed
