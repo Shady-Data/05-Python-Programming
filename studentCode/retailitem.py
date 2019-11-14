@@ -24,7 +24,7 @@ def main():
         # display the details
         print('\nDescription:', retail_item.get_description())
         print('\tUnits in Inventory:', retail_item.get_unitsInInventory())
-        print('\tPrice: ${}'.format(retail_item.get_price(), ',.2f'))
+        print(f'\tPrice: ${retail_item.get_price():,.2f}')
 
 # call the main function
 main()
