@@ -28,8 +28,8 @@
 from QuestionClass import Question, Player
 from os import system
 import random
+import pickle
 
-clear_screen = system('cls')
 
 def main():
     # generate a dictionary of questions
@@ -43,18 +43,26 @@ def main():
     
 def generate_questionbank(p_amount):
     # load a question list
-    all_questions = {
-        1 : {'question' : 'the actual question', 'possible_answers' : 'possibility','correct' : 'correct answer #'}
-    }
+    with open('trivia-v2.dat', 'rb') as read_file:
+        all_questions = pickle.load(read_file)
     # start an empty list to store the questions
     game_questions = []
     # get random questions until p_amount is hit or all questions is empty
-    while game_questions < p_amount and len(all_questions) > 0:
+    while len(game_questions) < p_amount:
         # RNG
         rdm_index = random.randint(0, len(all_questions) - 1)
+        rdm_ans = []
+        while len(rdm_ans) < 4:
+            rng = random.randint(1, 4)
+            if rng not in rdm_ans:
+                rdm_ans.append(rng)
         # generate the question
-        rdm_q = all_questions.pop(rdm_index)
-        gen_question = Question(rdm_q['question'], rdm_q['pos_ans_1'], rdm_q['pos_ans_2'], rdm_q['pos_ans_3'], rdm_q['pos_ans_4'], rdm_q['correct'])
+        rdm_q = all_questions[rdm_index]
+        correct = -1
+        for ind, rng in enumerate(rdm_ans):
+            if rdm_q[rng] == rdm_q[5]:
+                correct = ind + 1
+        gen_question = Question(rdm_q[0], rdm_q[rdm_ans[0]], rdm_q[rdm_ans[1]], rdm_q[rdm_ans[2]], rdm_q[rdm_ans[3]], correct)
         # add the generated question object to the game questions
         game_questions.append(gen_question)
 
@@ -81,7 +89,7 @@ def get_players():
 def play_game(p_questions, p_players):
     # Iterate through the questions
     for num, q in enumerate(p_questions):
-        possible_ans = [q.get_possible_1(), q.get_possible_2(), q.get_possible_3, q.get_possible_4()]
+        possible_ans = [q.get_possible_1(), q.get_possible_2(), q.get_possible_3(), q.get_possible_4()]
         # iterate through the players
         for p in p_players:
             clear_screen()
@@ -98,7 +106,7 @@ def play_game(p_questions, p_players):
                 print()
             # Prompt for player's answer
             play = 0
-            while play < 0 or play > 5:
+            while play <= 0 or play >= 5:
                 try:
                     play = int(input(f'{p.get_name()}\'s Answer? (1,2,3,4): '))
                 except ValueError:
@@ -107,18 +115,18 @@ def play_game(p_questions, p_players):
             if play == q.get_correct():
                 p.add_points()
     # once all players and questions have been iterated through
+    clear_screen()
     # iterate through the players and print their scores
     highest_score = p_players[0]
     for player in p_players:
         print(f'{player.get_name()} : Scored {player.get_points()} Points')
-        if player.get_points() > highest_score.get_points:
+        if player.get_points() > highest_score.get_points():
             highest_score = player
     # print player win statement
     print(f'{highest_score.get_name()} Wins!')
 
+def clear_screen():
+    system('cls')
 
-
-
-            
-
-
+# call the main function
+main()
