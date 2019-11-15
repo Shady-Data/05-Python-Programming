@@ -4,19 +4,25 @@ import EmployeeClass2
 import random
 
 def main():
+    # Generate a list of ProductionWorkers/ShiftSupervisors
     employees = gen_employees()
-
+    # Sort the employees by shift. Remove this if class lacks get_shift_num() method
+    # base Employee class does not have the __shift_num attribute
     employees.sort(key=lambda x: x.get_shift_num())
-
+    # iterate through the employees list
     for employee in employees:
-        print('Name:', employee.get_name())
-        print('Employee ID#:', employee.get_id_num())
-        print('Shift:', employee.get_shift_num())
+        # Print the common attributes between the classes
+        print('\nEmployee ID#:', employee.get_id_num())
+        print('\tName:', employee.get_name())
+        print('\tShift:', employee.get_shift_num())
+        # Check for which class each employee belongs to
         if isinstance(employee, EmployeeClass2.ProductionWorker):
-            print(f'Hourly pay rate: ${employee.get_hourly_pay():.2f}')
+            # print the attributes specific specific to the ProductionWorker class
+            print(f'\tHourly pay rate: ${employee.get_hourly_pay():.2f}')
         elif isinstance(employee, EmployeeClass2.ShiftSupervisor):
-            print(f'Salary: ${employee.get_annual_salary():,.2f}')
-            print(f'Annual Production Bonus: ${employee.get_annual_prod_bonus():,.2f}')
+            # print the attributes specific specific to the ShiftSupervisor class
+            print(f'\tSalary: ${employee.get_annual_salary():,.2f}')
+            print(f'\tAnnual Production Bonus: ${employee.get_annual_prod_bonus():,.2f}')
 
 def gen_employees():
     amount = random.randint(10,100)
@@ -37,7 +43,7 @@ def gen_employees():
         if emp_type == classes[0]:
             hourly_pay = random.randint(10, 20) + random.random()
             employee = emp_type(name, rng_employee_ids[counter], shift, hourly_pay)
-        if emp_type == classes[1]:
+        elif emp_type == classes[1]:
             salary = random.randint(60000, 140000)
             employee = emp_type(name, rng_employee_ids[counter], shift, salary)
             bonus = random.choice(bonuses)
