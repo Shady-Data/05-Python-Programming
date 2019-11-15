@@ -263,6 +263,77 @@ def draw_lattice(p_num):
 # 6. (Turtle: plot the sine and cosine functions) Write a program that plots the sine
 # function in red and cosine in blue
 
+import math
+
+def draw_sin_cos():
+    SIZE = 40
+    SCALE = 5
+    turtle.shape('turtle')
+    turtle.speed(0)
+    draw_graph(SIZE, SCALE)
+    draw_sine(SIZE, SCALE)
+    draw_cosine(SIZE,SCALE)
+
+def draw_graph(size, scale):
+    SIZE = size * scale
+    turtle.color('black')
+    turtle.penup()
+    turtle.goto(-SIZE, 0)
+    turtle.pendown()
+    for x in range(-SIZE, SIZE):
+        if x == 0:
+            for y in range(-SIZE, SIZE):
+                if y % 25 == 0:
+                    turtle.seth(180)
+                    turtle.forward(10)
+                    turtle.seth(0)
+                    turtle.forward(20)
+                    turtle.penup()
+                elif y % 5 == 0:
+                    turtle.seth(180)
+                    turtle.forward(5)
+                    turtle.seth(0)
+                    turtle.forward(10)
+                    turtle.penup()
+                turtle.goto(0, y)
+                turtle.pendown()
+            turtle.goto(x, 0)
+        elif x % 25 == 0:
+            turtle.seth(90)
+            turtle.forward(10)
+            turtle.seth(270)
+            turtle.forward(20)
+            turtle.penup()
+        elif x % 5 == 0:
+            turtle.seth(90)
+            turtle.forward(5)
+            turtle.seth(270)
+            turtle.forward(10)
+            turtle.penup()
+        turtle.goto(x, 0)
+        turtle.pendown()
+
+def draw_sine(size, scale):
+    SIZE = size * scale
+    turtle.color('red')
+    turtle.penup()
+    sine = lambda x: math.sin(x)
+    turtle.goto(-SIZE, sine(-SIZE) * 10)
+    turtle.pendown()
+    for x in range(-SIZE, SIZE):
+        turtle.goto(x, sine(x) * 10)
+
+def draw_cosine(size, scale):
+    SIZE = size * scale
+    turtle.color('blue')
+    turtle.penup()
+    cosine = lambda x: math.cos(x)
+    turtle.goto(-SIZE, cosine(-SIZE) * 10)
+    turtle.pendown()
+    for x in range(-SIZE, SIZE):
+        turtle.goto(x, cosine(x) * 10)
+
+draw_sin_cos()
 
 # 7. (Turtle: chessboard) Write a program to draw a chessboard
 
@@ -273,10 +344,10 @@ def draw_chessboard():
     turtle.shape('turtle')
     # optional set turtle speed
     turtle.speed(0)
-    # optional set turtle colors (rainbow)
+    # optional set turtle colors
     colors = ['blanched almond', 'saddle brown']
     # optional set width of the line to be drawn
-    turtle.pensize(1)
+    turtle.pensize(3)
     # Ensure turtle is not drawing
     turtle.penup()
     # goto starting position for the table
@@ -286,33 +357,47 @@ def draw_chessboard():
         # goto the start of the row
         turtle.goto(start(row))
         for col in range(8):
+            # alternate color fill between rows and col
             if row % 2 == 0:
                 turtle.begin_fill()
                 # start drawing
                 turtle.pendown()
-                # draw the cell
+                # draw the square
+                # set the color based on position (returns either the first color, 0 index, or second color, 1 index)
                 turtle.color(colors[col % 2])
+                for r in range(4):
+                    turtle.forward(SIZE)
+                    turtle.right(90)
+                turtle.end_fill()
+                # draw the square outline
+                turtle.color('black')
                 for r in range(4):
                     turtle.forward(SIZE)
                     turtle.right(90)
                 # stop drawing
                 turtle.penup()
-                turtle.end_fill()
                 # move to the start of the next cell
                 turtle.forward(SIZE)
             else:
                 turtle.begin_fill()
                 # start drawing
                 turtle.pendown()
-                # draw the cell
+                # draw the square
+                # set the color based on position (returns either the first color, 0 index, or second color, 1 index)
                 turtle.color(colors[(col + 1) % 2])
+                for r in range(4):
+                    turtle.forward(SIZE)
+                    turtle.right(90)
+                turtle.end_fill()
+                # draw the square outline
+                turtle.color('black')
                 for r in range(4):
                     turtle.forward(SIZE)
                     turtle.right(90)
                 # stop drawing
                 turtle.penup()
-                turtle.end_fill()
                 # move to the start of the next cell
                 turtle.forward(SIZE)
+    turtle.hideturtle()
 
-draw_chessboard()
+# draw_chessboard()
