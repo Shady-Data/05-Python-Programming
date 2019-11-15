@@ -79,21 +79,21 @@ class ShiftSupervisor(Employee):
 
     def salary_raise_by_percent(self, p_percent_increase):
         if p_percent_increase < 1:
-            self.__annual_salary = self.__annual_salary + (self.__annual_salary * p_percent_increase)
+            self.__annual_salary = int(self.__annual_salary + (self.__annual_salary * p_percent_increase))
         else:
-            self.__annual_salary = self.__annual_salary + (self.__annual_salary * (p_percent_increase/100))
+            self.__annual_salary = int(self.__annual_salary + (self.__annual_salary * (p_percent_increase/100)))
     
     def salary_lower_by_percent(self, p_percent_decrease):
         if p_percent_decrease < 1:
-            self.__annual_salary = self.__annual_salary - (self.__annual_salary * p_percent_decrease)
+            self.__annual_salary = int(self.__annual_salary - (self.__annual_salary * p_percent_decrease))
         else:
-            self.__annual_salary = self.__annual_salary - (self.__annual_salary * (p_percent_decrease/100))
+            self.__annual_salary = int(self.__annual_salary - (self.__annual_salary * (p_percent_decrease/100)))
 
     def salary_raise_by_amount(self, p_raise_amount):
         self.__annual_salary += p_raise_amount
 
     def salary_lower_by_amount(self, p_lower_amount):
-        self.__annual_salary += p_lower_amount
+        self.__annual_salary -= p_lower_amount
 
     def earned_prod_bonus(self, p_bonus):
         self.__annual_prod_bonus += p_bonus

@@ -24,7 +24,71 @@ def main():
             print(f'\tSalary: ${employee.get_annual_salary():,.2f}')
             print(f'\tAnnual Production Bonus: ${employee.get_annual_prod_bonus():,.2f}')
 
+    # test_sal(employees)
+
+def test_sal(employees):
+    supervisors = [s for s in employees if isinstance(s, EmployeeClass2.ShiftSupervisor)]
+    for shiftsup in supervisors:
+        salary_mods = [shiftsup.salary_raise_by_percent, shiftsup.salary_lower_by_percent, shiftsup.salary_raise_by_amount, shiftsup.salary_lower_by_amount, shiftsup.earned_prod_bonus]
+        modifier = random.choice(salary_mods)
+        print('--------------------')
+        if modifier == salary_mods[0] or modifier == salary_mods[1]:
+            salary = shiftsup.get_annual_salary()
+            whole = random.randint(1, 5)
+            percent = whole/100
+            print('Salary before Mod:', shiftsup.get_annual_salary())
+            print('Modifier selected: ' + str(modifier) + ' by ' + str(percent) + '%')
+            if modifier == salary_mods[0]:
+                exp_salary = int(salary + (salary * percent))
+            elif modifier == salary_mods[1]:
+                exp_salary = int(salary - (salary * percent))
+            else:
+                print('Error')
+                exp_salary = 0
+            print(f'\n\tExpected return: ${exp_salary:,}')
+            modifier(percent)
+            print('After percent execution:', shiftsup.get_annual_salary())
+            print('Setting salary back to:', salary)
+            shiftsup.set_annual_salary(salary)
+            print('Modifier selected: ' + str(modifier) + ' by ' + str(whole))
+            modifier(whole)
+            print('After whole number execution:', shiftsup.get_annual_salary())
+            print('Setting salary back to:', salary)
+            shiftsup.set_annual_salary(salary)
+        elif modifier == salary_mods[2] or modifier == salary_mods[3]:
+            salary = shiftsup.get_annual_salary()
+            amount = random.randint(1000, 20000)
+            print('Salary before Mod:', shiftsup.get_annual_salary())
+            print('Modifier selected: ' + str(modifier) + ' by ' + str(amount))
+            if modifier == salary_mods[2]:
+                exp_salary = salary + amount
+            elif modifier == salary_mods[3]:
+                exp_salary = salary - amount
+            else:
+                print('Error')
+                exp_salary = 0
+            print(f'\n\tExpected return: ${exp_salary:,}')
+            modifier(amount)
+            print('After Excution:', shiftsup.get_annual_salary())
+            print('Setting salary back to:', salary)
+            shiftsup.set_annual_salary(salary)
+        elif modifier == salary_mods[4]:
+            bonus = shiftsup.get_annual_prod_bonus()
+            earned = random.randint(1000,5000)
+            print('Modifier selected: ' + str(modifier) + ' by ' + str(earned))
+            print('Bonus before modification:', shiftsup.get_annual_prod_bonus())
+            exp_bonus = bonus + earned
+            print(f'\n\tExpected return: ${exp_bonus:,}')
+            modifier(earned)
+            print('After Execution:', shiftsup.get_annual_prod_bonus())
+            print('Setting bonus back to:', bonus)
+            shiftsup.set_annual_prod_bonus(bonus)
+
+
+
+
 def gen_employees():
+    # This function simulates expected user input and generates a list of ProductionWorker and ShiftSupervisor objects
     amount = random.randint(10,100)
     names_list = ["Dave", "David", "Rob", "Robert", "Tim", "Timothy", "Sue", "Susan", "Jess", "Jessica", 'Tom', 'Thomas', 'Jack', 'Jacob', 'Jerry', "Beth", "Mary", "Melinda"]
     classes = [EmployeeClass2.ProductionWorker, EmployeeClass2.ShiftSupervisor]
