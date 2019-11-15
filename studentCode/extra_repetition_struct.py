@@ -333,7 +333,7 @@ def draw_cosine(size, scale):
     for x in range(-SIZE, SIZE):
         turtle.goto(x, cosine(x) * 10)
 
-draw_sin_cos()
+# draw_sin_cos()
 
 # 7. (Turtle: chessboard) Write a program to draw a chessboard
 
