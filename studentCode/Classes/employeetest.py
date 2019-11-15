@@ -31,7 +31,7 @@ def test_sal(employees):
     for shiftsup in supervisors:
         salary_mods = [shiftsup.salary_raise_by_percent, shiftsup.salary_lower_by_percent, shiftsup.salary_raise_by_amount, shiftsup.salary_lower_by_amount, shiftsup.earned_prod_bonus]
         modifier = random.choice(salary_mods)
-        print('--------------------')
+        print('------------------------------------------------------')
         if modifier == salary_mods[0] or modifier == salary_mods[1]:
             salary = shiftsup.get_annual_salary()
             whole = random.randint(1, 5)
