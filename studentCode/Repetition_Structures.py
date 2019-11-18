@@ -29,18 +29,21 @@ def draw_calories_burned():
     CALS_BURNED_PER_MIN = 3.9
     # Populate a list with the numbers requested for the table
     minutes = [10, 15, 20, 25, 30]
+    cals_burned = [m * CALS_BURNED_PER_MIN for m in minutes]
     # print the table headers
+    print('-------------------------------------')
     print('|     Minutes     |   Cals Burned   |')
     print('-------------------------------------')
     # iterate over the items in the list
-    for minute in minutes:
+    # for minute in minutes:
         # calculate the amount burned for the minutes from the list
-        cals_burned = minute * CALS_BURNED_PER_MIN
+        # cals_burned = minute * CALS_BURNED_PER_MIN
         # print the table contents of minute value from list iteration and the calculated amount burned
-        print(f'|{minute:^17}|{cals_burned:^17}|')
+    for minute, cals in zip(minutes, cals_burned):
+        print(f'|{minute:^17}|{cals:^17}|')
+    print('-------------------------------------')
 
 # draw_calories_burned()
-# print('-------------------------------------')
 
 # 3. Budget Analysis
 # Write a program that asks the user to enter the amount that he or she has budgeted for a month. A loop should then prompt the user to enter each of his or her expenses for the month and keep a running total. When the loop finishes, the program should display the amount that the user is over or under budget.
@@ -97,14 +100,18 @@ def distance_traveled():
     print('|  hours  | distance |')
     print('----------------------')
     # iterate through the range 1 to the number of hours traveled + 1
-    for hour in range(1, hours_traveled + 1):
+    # for hour in range(1, hours_traveled + 1):
+    hours = [h for h in range(1, hours_traveled + 1)]
         # calculate the distance traveled for the hour/iteration of the loop
-        distance = speed * hour
+        # distance = speed * hour
+    distance = lambda h: speed * h
+    distances = map(distance, hours)
         # Print the table contents
-        print(f'|{hour:^9}|{distance:>7} mi|')
+    for hour, dist in zip(hours, distances):
+        print(f'|{hour:^9}|{dist:>7} mi|')
+    # print('----------------------')
 
 # distance_traveled()
-# print('----------------------')
 
 # 5. Average Rainfall
 # Write a program that uses nested loops to collect data and calculate the average rainfall over a period of years. The program should first ask for the number of years. The outer loop will iterate once for each year. The inner loop will iterate twelve times, once for each month. Each iteration of the inner loop will ask the user for the inches of rainfall for that month. After all iterations, the program should display the number of months, the total inches of rainfall, and the average rainfall per month for the entire period.
@@ -169,17 +176,22 @@ def draw_table_celsius_fahr():
 #     Display "╠══════════╪════════════╣"
     print("╠══════════╪════════════╣")
 #     For celsius = 0 to 20 step 1
-    for celsius in range(21):
+    # for celsius in range(21):
 #         set fahrenheit = (9/5) * celsius + 32
-        fahrenheit = ((9/5) * celsius) + 32
+        # fahrenheit = ((9/5) * celsius) + 32
 #         If celsius < 10 Then
 #             Display "║     ", celsius, "     |    ", fahrenheit, "    ║"
 #         Else
 #             Display "║     ", celsius, "    |    ", fahrenheit, "    ║"
 #         End If
-        print(f'║{celsius:^10d}|{fahrenheit:^12.1f}║')
+    # Build a list with the fahrenheit converted numbers
+    fahrenheit = [((9/5) * x) + 32 for x in range(21)]
+    # enumerate the list contaning the fahrenheit values
+    for cel, fah in enumerate(fahrenheit):
+        # print the index == celcius and the fahhrenheit value
+        print(f'║{cel:^10d}|{fah:^12.1f}║')
 #         If celsius == 20 Then
-        if celsius == 20:
+        if cel == 20:
 #             Display "╚══════════╧════════════╝" // Last line of the table
             print("╚══════════╧════════════╝")
 #         Else
@@ -226,15 +238,18 @@ def pennies_for_pay():
     print(f'You will be paid ${total_pay:,.2f} over a period of {num_days} days.')
 
 # call pennies_for_pay
-pennies_for_pay()
+# pennies_for_pay()
 
 # 8. Sum of Numbers
 # Write a program with a loop that asks the user to enter a series of positive numbers. The user should enter a negative number to signal the end of the series.
 # After all the positive numbers have been entered, the program should display their sum.
 
+from functools import reduce
+
 def sum_of_nums():
     # initialize the total variable
-    total_sum = 0
+    # total_sum = 0
+    numbers = []
     # set a sentinal value for loop
     num_input = 0.01
 
@@ -254,10 +269,12 @@ def sum_of_nums():
             #set num_input to float
             num_input = float(num_input)
             # add the user input to the total accumalator
-            total_sum += num_input
+            # total_sum += num_input
+            numbers.append(num_input)
 
+    total_sum = reduce(lambda x, y: x + y, numbers)
     # Display the total of all numbers entered.
-    print(f'The sum of all numbers entered is {total_sum:f}.')
+    print(f'The sum of all numbers entered is {total_sum:,.2f}.')
 
 # call sum_of_numbers
 # sum_of_nums()
@@ -278,11 +295,12 @@ def pattern_draw_1():
     # while loops > 0 Then
     while loops > 0:
         # Set pattern = '' // Clears the pattern variable for the loop
-        pattern = ''
+        # pattern = ''
         # For n ( <= unused variable) in range 0 to the number of loops:
-        for n in range(loops):
+        # for n in range(loops):
             # Set pattern = pattern + '*' // builds the pattern to be printed
-            pattern += "*"
+            # pattern += "*"
+        pattern = ''.join('*'*loops)
         # Print the built pattern
         print(pattern)
         # Set loops = loops -1 // Decrement the sentinal value
@@ -305,13 +323,13 @@ def pattern_draw_2():
     # While accumalator < number of repetitions of the pattern
     while spaces < 6:
         # Set pattern = '#' // clears the pattern and starts a new one
-        pattern = '#'
+        pattern = ''.join('#' + ' ' * spaces + '#')
         # For space ( <= unused variable) in range 0 to accumalated spaces
-        for space in range(spaces):
+        # for space in range(spaces):
             # Set pattern = pattern + ' ' // builds the number of empty spaces in the pattern
-            pattern += " "
+            # pattern += " "
         # Set pattern = pattern + '#' // adds the remaing char to the pattern for the loop
-        pattern += '#'
+        # pattern += '#'
         # print the pattern
         print(pattern)
         # Set spaces = spaces + 1
