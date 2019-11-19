@@ -148,7 +148,7 @@ def get_player_rps():
 
 import turtle
 
-def draw_circles(p_numCircles):
+def draw_multi_circles(p_numCircles):
     # Draws p_numCircles circles around the 0, 0 coordinate with a 5 pixel seperation between circles
     # Optional set turtle shape
     turtle.shape('turtle')
@@ -303,7 +303,7 @@ def draw_lattice(p_num):
             # start drawing
             turtle.pendown()
             # draw the cell
-            for r in range(4):
+            for _ in range(4):
                 turtle.forward(SIZE)
                 turtle.right(90)
             # stop drawing
@@ -319,7 +319,7 @@ def draw_lattice(p_num):
 import math
 
 def draw_sin_cos():
-    SIZE = 40
+    SIZE = 20
     SCALE = 5
     turtle.shape('turtle')
     turtle.speed(0)
@@ -337,56 +337,85 @@ def draw_graph(size, scale):
         if x == 0:
             for y in range(-SIZE, SIZE):
                 if y % 25 == 0:
-                    turtle.seth(180)
-                    turtle.forward(10)
-                    turtle.seth(0)
-                    turtle.forward(20)
-                    turtle.penup()
+                    # turtle.pendown()
+                    # turtle.seth(180)
+                    # turtle.forward(10)
+                    # turtle.seth(0)
+                    # turtle.forward(20)
+                    # turtle.penup()
+                    draw_gradient(10, turtle.xcor())
                 elif y % 5 == 0:
-                    turtle.seth(180)
-                    turtle.forward(5)
-                    turtle.seth(0)
-                    turtle.forward(10)
-                    turtle.penup()
+                    # turtle.pendown()
+                    # turtle.seth(180)
+                    # turtle.forward(5)
+                    # turtle.seth(0)
+                    # turtle.forward(10)
+                    # turtle.penup()
+                    draw_gradient(5, turtle.xcor())
+                # turtle.pendown()
                 turtle.goto(0, y)
-                turtle.pendown()
+                # turtle.penup()
             turtle.goto(x, 0)
         elif x % 25 == 0:
-            turtle.seth(90)
-            turtle.forward(10)
-            turtle.seth(270)
-            turtle.forward(20)
-            turtle.penup()
+            # turtle.pendown()
+            # turtle.seth(90)
+            # turtle.forward(10)
+            # turtle.seth(270)
+            # turtle.forward(20)
+            # turtle.penup()
+            draw_gradient(10, turtle.xcor())
         elif x % 5 == 0:
-            turtle.seth(90)
-            turtle.forward(5)
-            turtle.seth(270)
-            turtle.forward(10)
-            turtle.penup()
+            # turtle.pendown()
+            # turtle.seth(90)
+            # turtle.forward(5)
+            # turtle.seth(270)
+            # turtle.forward(10)
+            # turtle.penup()
+            draw_gradient(5, turtle.xcor())
+        # turtle.pendown()
         turtle.goto(x, 0)
-        turtle.pendown()
+        # turtle.penup()
 
 def draw_sine(size, scale):
     SIZE = size * scale
+    turtle.speed(0)
     turtle.color('red')
     turtle.penup()
     sine = lambda x: math.sin(x)
-    turtle.goto(-SIZE, sine(-SIZE) * 10)
+    turtle.goto(-SIZE, sine(-SIZE) * SIZE/2)
     turtle.pendown()
-    for x in range(-SIZE, SIZE):
-        turtle.goto(x, sine(x) * 10)
+    x_coords = [x + (y / 100) for x in range(-SIZE * scale, SIZE * scale) for y in range(100) if x in range(-SIZE, SIZE)]
+    sine_list = [(x, sine(x) * SIZE/2) for x in x_coords]
+    # print(sine_list)
+    for coords in sine_list:
+        turtle.goto(coords)
 
 def draw_cosine(size, scale):
     SIZE = size * scale
+    turtle.speed(0)
     turtle.color('blue')
     turtle.penup()
     cosine = lambda x: math.cos(x)
-    turtle.goto(-SIZE, cosine(-SIZE) * 10)
+    turtle.goto(-SIZE, cosine(-SIZE) * SIZE/2)
     turtle.pendown()
-    for x in range(-SIZE, SIZE):
-        turtle.goto(x, cosine(x) * 10)
+    x_coords = [x + (y / 10) for x in range(-SIZE * scale, SIZE * scale) for y in range(100) if x in range(-SIZE, SIZE)]
+    cosine_list = [(x, cosine(x) * SIZE/2) for x in x_coords]
+    # print(cosine_list)
+    for coords in cosine_list:
+        turtle.goto(coords)
 
-# draw_sin_cos()
+def draw_gradient(p_length, p_xcoord):
+    turtle.speed(0)
+    turtle.pendown()
+    if p_xcoord == 0:
+        turtle.seth(180)
+    else:
+        turtle.seth(90)
+    turtle.forward(p_length)
+    turtle.backward(2 * p_length)
+    turtle.penup()
+
+draw_sin_cos()
 
 # 7. (Turtle: chessboard) Write a program to draw a chessboard
 
@@ -399,6 +428,7 @@ def draw_chessboard():
     turtle.speed(0)
     # optional set turtle colors
     turtle.color('black')
+    # define the fill colors
     colors = ['blanched almond', 'saddle brown']
     # optional set width of the line to be drawn
     turtle.pensize(3)
@@ -419,9 +449,10 @@ def draw_chessboard():
                 # start drawing
                 turtle.pendown()
                 # draw the square
-                for r in range(4):
-                    turtle.forward(SIZE)
-                    turtle.right(90)
+                draw_square(SIZE)
+                # for r in range(4):
+                #     turtle.forward(SIZE)
+                #     turtle.right(90)
                 turtle.end_fill()
                 # draw the square outline
                 # turtle.color('black')
@@ -439,9 +470,10 @@ def draw_chessboard():
                 # start drawing
                 turtle.pendown()
                 # draw the square
-                for r in range(4):
-                    turtle.forward(SIZE)
-                    turtle.right(90)
+                draw_square(SIZE)
+                # for r in range(4):
+                #     turtle.forward(SIZE)
+                #     turtle.right(90)
                 turtle.end_fill()
                 # draw the square outline
                 # turtle.color('black')
@@ -454,4 +486,11 @@ def draw_chessboard():
                 turtle.forward(SIZE)
     turtle.hideturtle()
 
-draw_chessboard()
+def draw_square(p_size):
+    for _ in range(4):
+        turtle.pendown()
+        turtle.forward(p_size)
+        turtle.right(90)
+        turtle.penup()
+
+# draw_chessboard()

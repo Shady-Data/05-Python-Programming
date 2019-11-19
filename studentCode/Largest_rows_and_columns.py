@@ -19,11 +19,11 @@ def largest_rows_columns():
     # grab a random integer between 2 and 10, inclusive, to determine the size of the matrix
     SIZE = randint(2,10)
     # iterate through a range up to the rng size variable
-    for build_row in range(SIZE):
+    for _ in range(SIZE):
         # set an empty string to begin building the binary pattern
         m_row = []
         # iterate through a range of the matrix size constant to build the columns entry
-        for build_columns in range(SIZE):
+        for _ in range(SIZE):
             # append a random integer (0, 1) to the row pattern
             m_row.append(randint(0, 1))
         # append the built row to the matrix
@@ -49,10 +49,11 @@ def largest_rows_columns():
     calc_columns = [0] * SIZE
 
     # iterate over each row in the matrix
-    for row in matrix:
+    for ind, row in enumerate(matrix):
         # sum the row and append it to calc_rows list
         calc_rows.append(sum(row))
         # Iterate ovet each element in the row to get the column count
+        print(f'Row {ind} Decimal Value:', int('0b' + ''.join(map(str, row)), base=0))
         for index in range(len(row)):
             # if element in index == 1 ; do nothing if element != 1
             if row[index] == 1:
