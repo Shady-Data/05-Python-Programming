@@ -146,11 +146,11 @@ def driver_license_exam():
     # set string variable to all of the answers concatenated together
     answers_string = 'BDAACABACDBCDADCCBDA'
     # initialize the answer list
-    answers_list = []
+    answers_list = [ch for ch in answers_string]
     # iterate through each char in the answers string
-    for char in answers_string:
+    # for char in answers_string:
         # append each char to the answer list
-        answers_list.append(char)
+        # answers_list.append(char)
     
     # open the student answer file to be read from // assumed all answers on one line with commas seperating values
     with open('answers.txt', 'r') as answer_file:
@@ -203,11 +203,11 @@ def largest_rows_columns():
     # grab a random integer between 2 and 10, inclusive, to determine the size of the matrix
     SIZE = randint(2,10)
     # iterate through a range up to the rng size variable
-    for build_row in range(SIZE):
+    for _ in range(SIZE):
         # set an empty string to begin building the binary pattern
         m_row = []
         # iterate through a range of the matrix size constant to build the columns entry
-        for build_columns in range(SIZE):
+        for _ in range(SIZE):
             # append a random integer (0, 1) to the row pattern
             m_row.append(randint(0, 1))
         # append the built row to the matrix

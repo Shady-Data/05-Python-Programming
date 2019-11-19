@@ -172,22 +172,29 @@ def calc_cals_carbs(p_carbGrams):
 
 # There are three seating categories at a stadium. For a softball game, Class A seats cost $15, Class B seats cost $12, and Class C seats cost $9. Design a modular program that asks how many tickets for each class of seats were sold, and then displays the amount of income generated from ticket sales.
 
+from random import randint
+
 # Module main
 def stadium_seating():
 # 	Declare real revenue, sectionAProfits, sectionBProfits, sectionCProfits
 # 	Constant Integer MAX_SEATS_A = 300
 # 	Constant Integer MAX_SEATS_B = 500
 # 	Constant Integer MAX_SEATS_C = 200
-    tiers = {'A': {'tier': 'A', 'price': 15, 'MAX': 300, 'sold': 0}, 'B': {'tier': 'B', 'price': 12, 'MAX': 500, 'sold': 0}, 'C': {'tier': 'C', 'price': 9, 'MAX': 200, 'sold': 0}}
-    sales = {'A': 0, 'B': 0, 'C': 0}
+    tiers = {
+        'A': {'tier': 'A', 'price': 15, 'MAX': 300, 'sold': 0},
+        'B': {'tier': 'B', 'price': 12, 'MAX': 500, 'sold': 0},
+        'C': {'tier': 'C', 'price': 9, 'MAX': 200, 'sold': 0}
+        }
+    # sales = {'A': 0, 'B': 0, 'C': 0}
 # 	Set sectionAProfits = getTicketsSales(20, MAX_SEATS_A)
 # 	Set sectionBProfits = getTicketsSales(15, MAX_SEATS_B)
 # 	Set sectionCProfits = getTicketsSales(10, MAX_SEATS_C)
 # 	Set revenue = sectionAProfits + sectionBProfits + sectionCProfits
     for tier in tiers.keys():
         tiers[tier]['sold'] = get_ticket_sales(tiers[tier])
-        sales[tier] = get_sales(tiers[tier])
-    
+        # sales[tier] = get_sales(tiers[tier])
+    sales = {t : tiers[t]['price'] * tiers[t]['sold'] for t in tiers.keys()}
+    # print(sales)
     total_sales = sum_dict_values(sales)
 
     print("Total Sales from all tiers: ${:.2f}".format(total_sales))
@@ -209,26 +216,27 @@ def get_ticket_sales(p_tiers_dict):
 
 # 	Display "Enter number of seats sold for ", sectionID, ": "
 # 	Input ticketsSold
-    seats_sold = int(input("Enter the number of seat sold for section {}: ".format(p_tiers_dict['tier'])))
+    # seats_sold = int(input("Enter the number of seat sold for section {}: ".format(p_tiers_dict['tier'])))
 
 # 	While ticketsSold < 0 OR tiscketsSold > maxSeats
-    while seats_sold < 0 or seats_sold > p_tiers_dict['MAX']:
+    # while seats_sold < 0 or seats_sold > p_tiers_dict['MAX']:
 # 		Display "Ticket sales for section ", sectionID," cannot be negative or exceed the number of seats in the section (", maxSeats, ")"
-        print('Invalid input:\n\
-            seats sold for section {} cannot be less than 0\n \
-            or greater than {}.'.format(p_tiers_dict['tier'], p_tiers_dict['MAX']))
+        # print('Invalid input:\n\
+            # seats sold for section {} cannot be less than 0\n \
+            # or greater than {}.'.format(p_tiers_dict['tier'], p_tiers_dict['MAX']))
 # 		Display "Enter number of seats sold for ", sectionID, ": "
-        seats_sold = int(input("Enter the number of seat sold for section {}: ".format(p_tiers_dict['tier'])))
+        # seats_sold = int(input("Enter the number of seat sold for section {}: ".format(p_tiers_dict['tier'])))
 # 		Input ticketsSold
 # 	End While
-    return seats_sold
+    # return seats_sold
+    return randint(1, p_tiers_dict['MAX'])
 
 # 	Return price * ticketsSold
 def get_sales(p_tier_dict):
     return float(p_tier_dict['price'] * p_tier_dict['sold'])
 # End Function
 
-# stadium_seating()
+stadium_seating()
 # print('---------------------')
 
 # #9. Paint Job Estimator

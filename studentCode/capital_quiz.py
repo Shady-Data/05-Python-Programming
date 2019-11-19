@@ -71,13 +71,13 @@ def capital_quiz():
     # initialize a questions counter
     question = 1
     # Populate a list of states to work off of
-    states = []
-    for key in capitals.keys():
-        states.append(key)
+    states = [state for state in capitals.keys()]
+    # for key in capitals.keys():
+    #     states.append(key)
     # continuously generate questions until question > quiz
     while question <= quiz:
         # select a random state, by selecting a key from a random integer index number
-        rdm_state = states[randint(0, len(capitals) - 1)]
+        rdm_state = states.pop(randint(0, len(states) - 1))
         # Prompt user for the capital of the selected state
         user_answer = input(f'{question}. What is the capital of {rdm_state}?\n')
         # check if the answer is correct
@@ -89,7 +89,7 @@ def capital_quiz():
         else:
             print('Incorrect')
         # delete the state from states list to prevent repeat questions
-        states.remove(rdm_state)
+        # states.remove(rdm_state)
         # increment the question number
         question += 1
     

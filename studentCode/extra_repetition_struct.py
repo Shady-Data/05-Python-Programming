@@ -18,13 +18,13 @@ def perfect_number():
     perfect_nums = {}
 
     # For each number in range 2 to Max number + 1 // 0 and 1 are unnecessary for checks
-    for num2check in range(4, max_num + 1):
+    for num2check in range(2, max_num + 1):
         # Get the evenly divisible factors for number
-        factors = [num2check // x for x in range(1, num2check) if num2check % x == 0]
+        factors = [num2check // x for x in range(2, num2check + 1) if num2check % x == 0]
         # remove the element == to the num2check
-        factors.remove(num2check)
-        # add 1 to the list as a factor
-        factors.append(1)
+        # factors.remove(num2check)
+        # add 1 to the list as a factor */ add 1 to the range to get num2check // x = 1 /*
+        # factors.append(1)
         # Check if the sum of factors equals num2check
         if sum(factors) == num2check:
             # increment the counter if true
@@ -44,7 +44,7 @@ def perfect_number():
             print(f'{num}', end=', ')
 
     # print the counter
-    print(f'There were {counter} perfect numbers within 0-{max_num}.')
+    print(f'There were {counter} perfect numbers within 0 - {max_num}.')
 
 # perfect_number()
 
@@ -194,12 +194,14 @@ import turtle
 def draw_multi_table(p_num):
     # set a constant for the size of the boxes
     SIZE = 40
+    # set a constant font
+    FONT = ('Times New Roman', 12, 'normal')
     # Optional set turtle shape
     turtle.shape('turtle')
     # optional set turtle speed
     turtle.speed(0)
     # optional set turtle colors (rainbow)
-    colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+    # colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
     # optional set width of the line to be drawn
     turtle.pensize(1)
     # Ensure turtle is not drawing
@@ -214,11 +216,62 @@ def draw_multi_table(p_num):
             # start drawing
             turtle.pendown()
             # draw the cell
+            start_shape_coords = (turtle.xcor(), turtle.ycor())
             for r in range(4):
                 turtle.forward(SIZE)
                 turtle.right(90)
+                # after completeing the 2nd line of the shape, but before starting the 3rd line, r starts at 0
+                if r == 1:
+                    # get the position of the opposite en of the shape (square)
+                    far_shape_coords = (turtle.xcor(), turtle.ycor())
             # stop drawing
             turtle.penup()
+            # if row is 0 and col is not 0 write the column numbers header
+            if row == 0 and col != 0:
+                # calculate the center of the box
+                center_coords = [(start_shape_coords[0] + far_shape_coords[0]) / 2, (start_shape_coords[1] + far_shape_coords[1] + FONT[1]) / 2]
+                # goto the center of the shape - the FONT size [1]
+                turtle.goto(center_coords[0], center_coords[1] - (FONT[1]))
+                # optional set turtle color
+                turtle.color('red')
+                # pendown
+                turtle.pendown()
+                # write the col number
+                turtle.write(col, align='center', font=FONT)
+                # penup
+                turtle.penup()
+            # if row is not 0 and col is 0 write the row numbers header
+            elif row != 0 and col == 0:
+                # calculate the center of the box
+                center_coords = [(start_shape_coords[0] + far_shape_coords[0]) / 2, (start_shape_coords[1] + far_shape_coords[1] + FONT[1]) / 2]
+                # goto the center of the shape
+                turtle.goto(center_coords[0], center_coords[1] - (FONT[1]))
+                # optional set turtle color
+                turtle.color('blue')
+                # pendown
+                turtle.pendown()
+                # write the col number
+                turtle.write(row, align='center', font=FONT)
+                # penup
+                turtle.penup()
+            # if row is not 0 and col is not 0 write the product of row * col
+            elif row != 0 and col != 0:
+                # calculate the center of the box
+                center_coords = [(start_shape_coords[0] + far_shape_coords[0]) / 2, (start_shape_coords[1] + far_shape_coords[1] + FONT[1]) / 2]
+                # goto the center of the shape
+                turtle.goto(center_coords[0], center_coords[1] - (FONT[1]))
+                # optional set turtle color
+                turtle.color('purple')
+                # pendown
+                turtle.pendown()
+                # write the col number
+                turtle.write(row * col, align='center', font=FONT)
+                # penup
+                turtle.penup()
+            # reset the turtle color for the next shape to be drawn
+            turtle.color('black')
+            # return to the start of the shape
+            turtle.goto(start_shape_coords)
             # move to the start of the next cell
             turtle.forward(SIZE)
 
@@ -235,7 +288,7 @@ def draw_lattice(p_num):
     # optional set turtle speed
     turtle.speed(0)
     # optional set turtle colors (rainbow)
-    colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+    # colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
     # optional set width of the line to be drawn
     turtle.pensize(1)
     # Ensure turtle is not drawing
@@ -272,7 +325,7 @@ def draw_sin_cos():
     turtle.speed(0)
     draw_graph(SIZE, SCALE)
     draw_sine(SIZE, SCALE)
-    draw_cosine(SIZE,SCALE)
+    draw_cosine(SIZE, SCALE)
 
 def draw_graph(size, scale):
     SIZE = size * scale
@@ -345,6 +398,7 @@ def draw_chessboard():
     # optional set turtle speed
     turtle.speed(0)
     # optional set turtle colors
+    turtle.color('black')
     colors = ['blanched almond', 'saddle brown']
     # optional set width of the line to be drawn
     turtle.pensize(3)
@@ -359,45 +413,45 @@ def draw_chessboard():
         for col in range(8):
             # alternate color fill between rows and col
             if row % 2 == 0:
+                # set the color based on position (returns either the first color, 0 index, or second color, 1 index)
+                turtle.fillcolor(colors[col % 2])
                 turtle.begin_fill()
                 # start drawing
                 turtle.pendown()
                 # draw the square
-                # set the color based on position (returns either the first color, 0 index, or second color, 1 index)
-                turtle.color(colors[col % 2])
                 for r in range(4):
                     turtle.forward(SIZE)
                     turtle.right(90)
                 turtle.end_fill()
                 # draw the square outline
-                turtle.color('black')
-                for r in range(4):
-                    turtle.forward(SIZE)
-                    turtle.right(90)
+                # turtle.color('black')
+                # for r in range(4):
+                #     turtle.forward(SIZE)
+                #     turtle.right(90)
                 # stop drawing
                 turtle.penup()
                 # move to the start of the next cell
                 turtle.forward(SIZE)
             else:
+                # set the color based on position (returns either the first color, 0 index, or second color, 1 index)
+                turtle.fillcolor(colors[(col + 1) % 2])
                 turtle.begin_fill()
                 # start drawing
                 turtle.pendown()
                 # draw the square
-                # set the color based on position (returns either the first color, 0 index, or second color, 1 index)
-                turtle.color(colors[(col + 1) % 2])
                 for r in range(4):
                     turtle.forward(SIZE)
                     turtle.right(90)
                 turtle.end_fill()
                 # draw the square outline
-                turtle.color('black')
-                for r in range(4):
-                    turtle.forward(SIZE)
-                    turtle.right(90)
+                # turtle.color('black')
+                # for r in range(4):
+                #     turtle.forward(SIZE)
+                #     turtle.right(90)
                 # stop drawing
                 turtle.penup()
                 # move to the start of the next cell
                 turtle.forward(SIZE)
     turtle.hideturtle()
 
-# draw_chessboard()
+draw_chessboard()

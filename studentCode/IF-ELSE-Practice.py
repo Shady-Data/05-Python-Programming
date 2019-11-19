@@ -210,7 +210,11 @@ def color_mixer():
 #     Declare String priColor1, priColor2
     user_colors = {'color_1': "", 'color_2': ''}
     # dictionary of primary colors with values of dictionaries containing mix results
-    colours = {"red": {"red": "red", "blue": "purple", "yellow": "orange"}, "blue": {"red": "purple", "blue": "blue", "yellow": "green"}, "yellow": {"red": "orange", "blue": "green", "yellow": "yellow"}}
+    colours = {
+        "red": {"red": "red", "blue": "purple", "yellow": "orange"},
+    "blue": {"red": "purple", "blue": "blue", "yellow": "green"},
+    "yellow": {"red": "orange", "blue": "green", "yellow": "yellow"}
+    }
 #     Display "Please enter the first color to mix 'red, yellow, or blue': "
 #     Input priColor1
 #     Display "Please enter the second color to mix 'red, yellow, or blue': "
@@ -290,11 +294,11 @@ def dollar_game():
         # Display win message
         print('\nYou Win!')
     # Check if the sum of coins is less than 1.00
-    elif sum(coins_totals) < 1.00:
+    elif sum(coin_totals) < 1.00:
         # Display less than message
         print('\nYou have less than $1.00')
     # Check if the sum of coins is greater than 1.00
-    elif sum(coins_totals) > 1.00:
+    elif sum(coin_totals) > 1.00:
         # Display more than message
         print('\nYou have more than $1.00')
     # else
