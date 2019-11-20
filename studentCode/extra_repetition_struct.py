@@ -299,7 +299,7 @@ def draw_lattice(p_num):
     for row in range(p_num):
         # goto the start of the row
         turtle.goto(start(row))
-        for col in range(p_num):
+        for _ in range(p_num):
             # start drawing
             turtle.pendown()
             # draw the cell
@@ -320,22 +320,33 @@ import math
 
 def draw_sin_cos():
     SIZE = 20
-    SCALE = 5
+    SCALE = 1
+    SAMPLES = 10
     turtle.shape('turtle')
     turtle.speed(0)
     draw_graph(SIZE, SCALE)
-    draw_sine(SIZE, SCALE)
-    draw_cosine(SIZE, SCALE)
+    draw_sine(SIZE, SCALE, SAMPLES)
+    draw_cosine(SIZE, SCALE, SAMPLES)
 
 def draw_graph(size, scale):
-    SIZE = size * scale
+    SIZE = size * 10
     turtle.color('black')
     turtle.penup()
+    # draw the axis
     turtle.goto(-SIZE, 0)
     turtle.pendown()
-    for x in range(-SIZE, SIZE):
+    turtle.goto(SIZE, 0)
+    turtle.penup()
+    turtle.goto(0, -SIZE)
+    turtle.pendown()
+    turtle.goto(0, SIZE)
+    turtle.penup()
+    # goto start point for drawing gradients
+    turtle.goto(-SIZE, 0)
+    for x in range(-SIZE, SIZE + 1):
         if x == 0:
-            for y in range(-SIZE, SIZE):
+            turtle.goto(0, -SIZE)
+            for y in range(-SIZE, SIZE + 1):
                 if y % 25 == 0:
                     # turtle.pendown()
                     # turtle.seth(180)
@@ -376,29 +387,29 @@ def draw_graph(size, scale):
         turtle.goto(x, 0)
         # turtle.penup()
 
-def draw_sine(size, scale):
-    SIZE = size * scale
+def draw_sine(size, scale, samples):
+    SIZE = size * 10
     turtle.speed(0)
     turtle.color('red')
     turtle.penup()
     sine = lambda x: math.sin(x)
     turtle.goto(-SIZE, sine(-SIZE) * SIZE/2)
     turtle.pendown()
-    x_coords = [x + (y / 100) for x in range(-SIZE * scale, SIZE * scale) for y in range(100) if x in range(-SIZE, SIZE)]
+    x_coords = [x + (y / samples) for x in range(-SIZE, SIZE) for y in range(samples) if x in range(-SIZE, SIZE)]
     sine_list = [(x, sine(x) * SIZE/2) for x in x_coords]
     # print(sine_list)
     for coords in sine_list:
         turtle.goto(coords)
 
-def draw_cosine(size, scale):
-    SIZE = size * scale
+def draw_cosine(size, scale, samples):
+    SIZE = size * 10
     turtle.speed(0)
     turtle.color('blue')
     turtle.penup()
     cosine = lambda x: math.cos(x)
     turtle.goto(-SIZE, cosine(-SIZE) * SIZE/2)
     turtle.pendown()
-    x_coords = [x + (y / 10) for x in range(-SIZE * scale, SIZE * scale) for y in range(100) if x in range(-SIZE, SIZE)]
+    x_coords = [x + (y / samples) for x in range(-SIZE * scale, SIZE * scale) for y in range(samples) if x in range(-SIZE, SIZE)]
     cosine_list = [(x, cosine(x) * SIZE/2) for x in x_coords]
     # print(cosine_list)
     for coords in cosine_list:
