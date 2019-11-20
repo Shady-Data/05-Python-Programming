@@ -146,42 +146,42 @@ def get_player_rps():
 
 # 3. (Turtle: draw circles) Write a program that draws 10 circles with centers (0, 0). Like below
 
-import turtle
+import turtle as t
 
 def draw_multi_circles(p_numCircles):
     # Draws p_numCircles circles around the 0, 0 coordinate with a 5 pixel seperation between circles
     # Optional set turtle shape
-    turtle.shape('turtle')
+    t.shape('turtle')
     # optional set turtle speed
-    turtle.speed(0)
+    t.speed(0)
     # optional set turtle colors (rainbow)
     colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
     # optional set width of the line to be drawn
-    turtle.pensize(3)
+    t.pensize(3)
     # determine the diameter (in pixels) of the circle
     circle = 20
     # turtle draws circles counter clockwise for the bottom of the circle
     for rep in range(p_numCircles):
         # turtle starts at 0,0 coordinate facing east =>
-        turtle.penup()
+        t.penup()
         # set the color based on rep % len colors so that rolors loop if rep is outside the length of colors
-        turtle.pencolor(colors[rep % len(colors)])
+        t.pencolor(colors[rep % len(colors)])
         # turn the turtle to face south
-        turtle.right(90)
+        t.right(90)
         # move to the start position for the circle to be drawn
-        turtle.forward(circle)
+        t.forward(circle)
         # turn the turtle to face east again
-        turtle.left(90)
+        t.left(90)
         # start drawing
-        turtle.pendown()
+        t.pendown()
         # draw the circle
-        turtle.circle(circle)
+        t.circle(circle)
         # stop drawing
-        turtle.penup()
+        t.penup()
         # return to the 0,0 coordinate
-        turtle.goto(0, 0)
+        t.goto(0, 0)
         # return turtle to facing east
-        turtle.seth(0)
+        t.seth(0)
         # increment the circle size
         circle += 5
     
@@ -189,7 +189,6 @@ def draw_multi_circles(p_numCircles):
 
 
 # 4. (Turtle: display a multiplication table) Write a program that displays a multiplication table
-import turtle
 
 def draw_multi_table(p_num):
     # set a constant for the size of the boxes
@@ -197,83 +196,83 @@ def draw_multi_table(p_num):
     # set a constant font
     FONT = ('Times New Roman', 12, 'normal')
     # Optional set turtle shape
-    turtle.shape('turtle')
+    t.shape('turtle')
     # optional set turtle speed
-    turtle.speed(0)
+    t.speed(0)
     # optional set turtle colors (rainbow)
     # colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
     # optional set width of the line to be drawn
-    turtle.pensize(1)
+    t.pensize(1)
     # Ensure turtle is not drawing
-    turtle.penup()
+    t.penup()
     # goto starting position for the table
     start = lambda y: (-(SIZE * (p_num + 1))/2, ((SIZE * (p_num + 1)) - (2 * SIZE * y))/2)
     # iterate through the number of cells in the table that need to be drawn
     for row in range(p_num + 1):
         # goto the start of the row
-        turtle.goto(start(row))
+        t.goto(start(row))
         for col in range(p_num + 1):
             # start drawing
-            turtle.pendown()
+            t.pendown()
             # draw the cell
-            start_shape_coords = (turtle.xcor(), turtle.ycor())
+            start_shape_coords = (t.xcor(), t.ycor())
             for r in range(4):
-                turtle.forward(SIZE)
-                turtle.right(90)
+                t.forward(SIZE)
+                t.right(90)
                 # after completeing the 2nd line of the shape, but before starting the 3rd line, r starts at 0
                 if r == 1:
                     # get the position of the opposite en of the shape (square)
-                    far_shape_coords = (turtle.xcor(), turtle.ycor())
+                    far_shape_coords = (t.xcor(), t.ycor())
             # stop drawing
-            turtle.penup()
+            t.penup()
             # if row is 0 and col is not 0 write the column numbers header
             if row == 0 and col != 0:
                 # calculate the center of the box
                 center_coords = [(start_shape_coords[0] + far_shape_coords[0]) / 2, (start_shape_coords[1] + far_shape_coords[1] + FONT[1]) / 2]
                 # goto the center of the shape - the FONT size [1]
-                turtle.goto(center_coords[0], center_coords[1] - (FONT[1]))
+                t.goto(center_coords[0], center_coords[1] - (FONT[1]))
                 # optional set turtle color
-                turtle.color('red')
+                t.color('red')
                 # pendown
-                turtle.pendown()
+                t.pendown()
                 # write the col number
-                turtle.write(col, align='center', font=FONT)
+                t.write(col, align='center', font=FONT)
                 # penup
-                turtle.penup()
+                t.penup()
             # if row is not 0 and col is 0 write the row numbers header
             elif row != 0 and col == 0:
                 # calculate the center of the box
                 center_coords = [(start_shape_coords[0] + far_shape_coords[0]) / 2, (start_shape_coords[1] + far_shape_coords[1] + FONT[1]) / 2]
                 # goto the center of the shape
-                turtle.goto(center_coords[0], center_coords[1] - (FONT[1]))
+                t.goto(center_coords[0], center_coords[1] - (FONT[1]))
                 # optional set turtle color
-                turtle.color('blue')
+                t.color('blue')
                 # pendown
-                turtle.pendown()
+                t.pendown()
                 # write the col number
-                turtle.write(row, align='center', font=FONT)
+                t.write(row, align='center', font=FONT)
                 # penup
-                turtle.penup()
+                t.penup()
             # if row is not 0 and col is not 0 write the product of row * col
             elif row != 0 and col != 0:
                 # calculate the center of the box
                 center_coords = [(start_shape_coords[0] + far_shape_coords[0]) / 2, (start_shape_coords[1] + far_shape_coords[1] + FONT[1]) / 2]
                 # goto the center of the shape
-                turtle.goto(center_coords[0], center_coords[1] - (FONT[1]))
+                t.goto(center_coords[0], center_coords[1] - (FONT[1]))
                 # optional set turtle color
-                turtle.color('purple')
+                t.color('purple')
                 # pendown
-                turtle.pendown()
+                t.pendown()
                 # write the col number
-                turtle.write(row * col, align='center', font=FONT)
+                t.write(row * col, align='center', font=FONT)
                 # penup
-                turtle.penup()
+                t.penup()
             # reset the turtle color for the next shape to be drawn
-            turtle.color('black')
+            t.color('black')
             # return to the start of the shape
-            turtle.goto(start_shape_coords)
+            t.goto(start_shape_coords)
             # move to the start of the next cell
-            turtle.forward(SIZE)
+            t.forward(SIZE)
 
 # call draw the draw table function
 # draw_multi_table(12)
@@ -284,32 +283,34 @@ def draw_lattice(p_num):
     # set a constant for the size of the boxes
     SIZE = 40
     # Optional set turtle shape
-    turtle.shape('turtle')
+    t.shape('turtle')
     # optional set turtle speed
-    turtle.speed(0)
+    t.speed(0)
     # optional set turtle colors (rainbow)
     # colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
     # optional set width of the line to be drawn
-    turtle.pensize(1)
+    t.pensize(1)
     # Ensure turtle is not drawing
-    turtle.penup()
+    t.penup()
     # goto starting position for the table
     start = lambda y: (-(SIZE * (p_num))/2, ((SIZE * (p_num)) - (2 * SIZE * y))/2)
     # iterate through the number of cells in the table that need to be drawn
     for row in range(p_num):
         # goto the start of the row
-        turtle.goto(start(row))
+        t.goto(start(row))
         for _ in range(p_num):
             # start drawing
-            turtle.pendown()
+            t.pendown()
             # draw the cell
             for _ in range(4):
-                turtle.forward(SIZE)
-                turtle.right(90)
+                t.forward(SIZE)
+                t.right(90)
             # stop drawing
-            turtle.penup()
+            t.penup()
             # move to the start of the next cell
-            turtle.forward(SIZE)
+            t.forward(SIZE)
+
+# def draw_goto_triangle():
 # draw_lattice(17)
 
 
@@ -322,111 +323,111 @@ def draw_sin_cos():
     SIZE = 20
     SCALE = 1
     SAMPLES = 10
-    turtle.shape('turtle')
-    turtle.speed(0)
+    t.shape('turtle')
+    t.speed(0)
     draw_graph(SIZE, SCALE)
     draw_sine(SIZE, SCALE, SAMPLES)
     draw_cosine(SIZE, SCALE, SAMPLES)
 
 def draw_graph(size, scale):
     SIZE = size * 10
-    turtle.color('black')
-    turtle.penup()
+    t.color('black')
+    t.penup()
     # draw the axis
-    turtle.goto(-SIZE, 0)
-    turtle.pendown()
-    turtle.goto(SIZE, 0)
-    turtle.penup()
-    turtle.goto(0, -SIZE)
-    turtle.pendown()
-    turtle.goto(0, SIZE)
-    turtle.penup()
+    t.goto(-SIZE, 0)
+    t.pendown()
+    t.goto(SIZE, 0)
+    t.penup()
+    t.goto(0, -SIZE)
+    t.pendown()
+    t.goto(0, SIZE)
+    t.penup()
     # goto start point for drawing gradients
-    turtle.goto(-SIZE, 0)
+    t.goto(-SIZE, 0)
     for x in range(-SIZE, SIZE + 1):
         if x == 0:
-            turtle.goto(0, -SIZE)
+            t.goto(0, -SIZE)
             for y in range(-SIZE, SIZE + 1):
                 if y % 25 == 0:
-                    # turtle.pendown()
-                    # turtle.seth(180)
-                    # turtle.forward(10)
-                    # turtle.seth(0)
-                    # turtle.forward(20)
-                    # turtle.penup()
-                    draw_gradient(10, turtle.xcor())
+                    # t.pendown()
+                    # t.seth(180)
+                    # t.forward(10)
+                    # t.seth(0)
+                    # t.forward(20)
+                    # t.penup()
+                    draw_gradient(10, t.xcor())
                 elif y % 5 == 0:
-                    # turtle.pendown()
-                    # turtle.seth(180)
-                    # turtle.forward(5)
-                    # turtle.seth(0)
-                    # turtle.forward(10)
-                    # turtle.penup()
-                    draw_gradient(5, turtle.xcor())
-                # turtle.pendown()
-                turtle.goto(0, y)
-                # turtle.penup()
-            turtle.goto(x, 0)
+                    # t.pendown()
+                    # t.seth(180)
+                    # t.forward(5)
+                    # t.seth(0)
+                    # t.forward(10)
+                    # t.penup()
+                    draw_gradient(5, t.xcor())
+                # t.pendown()
+                t.goto(0, y)
+                # t.penup()
+            t.goto(x, 0)
         elif x % 25 == 0:
-            # turtle.pendown()
-            # turtle.seth(90)
-            # turtle.forward(10)
-            # turtle.seth(270)
-            # turtle.forward(20)
-            # turtle.penup()
-            draw_gradient(10, turtle.xcor())
+            # t.pendown()
+            # t.seth(90)
+            # t.forward(10)
+            # t.seth(270)
+            # t.forward(20)
+            # t.penup()
+            draw_gradient(10, t.xcor())
         elif x % 5 == 0:
-            # turtle.pendown()
-            # turtle.seth(90)
-            # turtle.forward(5)
-            # turtle.seth(270)
-            # turtle.forward(10)
-            # turtle.penup()
-            draw_gradient(5, turtle.xcor())
-        # turtle.pendown()
-        turtle.goto(x, 0)
-        # turtle.penup()
+            # t.pendown()
+            # t.seth(90)
+            # t.forward(5)
+            # t.seth(270)
+            # t.forward(10)
+            # t.penup()
+            draw_gradient(5, t.xcor())
+        # t.pendown()
+        t.goto(x, 0)
+        # t.penup()
 
 def draw_sine(size, scale, samples):
     SIZE = size * 10
-    turtle.speed(0)
-    turtle.color('red')
-    turtle.penup()
-    sine = lambda x: math.sin(x)
-    turtle.goto(-SIZE, sine(-SIZE) * SIZE/2)
-    turtle.pendown()
-    x_coords = [x + (y / samples) for x in range(-SIZE, SIZE) for y in range(samples) if x in range(-SIZE, SIZE)]
-    sine_list = [(x, sine(x) * SIZE/2) for x in x_coords]
+    t.speed(0)
+    t.color('red')
+    t.penup()
+    sine = lambda x: 50*math.sin((x/100)*2*math.pi)
+    t.goto(-SIZE, sine(-SIZE))
+    t.pendown()
+    # x_coords = [x + (y / samples) for x in range(-SIZE, SIZE) for y in range(samples) if x in range(-SIZE, SIZE)]
+    # sine_list = [(x, sine(x) * SIZE/2) for x in x_coords]
     # print(sine_list)
-    for coords in sine_list:
-        turtle.goto(coords)
+    for x in range(-SIZE, SIZE + 1):
+        t.goto(x, sine(x))
 
 def draw_cosine(size, scale, samples):
     SIZE = size * 10
-    turtle.speed(0)
-    turtle.color('blue')
-    turtle.penup()
-    cosine = lambda x: math.cos(x)
-    turtle.goto(-SIZE, cosine(-SIZE) * SIZE/2)
-    turtle.pendown()
-    x_coords = [x + (y / samples) for x in range(-SIZE * scale, SIZE * scale) for y in range(samples) if x in range(-SIZE, SIZE)]
-    cosine_list = [(x, cosine(x) * SIZE/2) for x in x_coords]
+    t.speed(0)
+    t.color('blue')
+    t.penup()
+    cosine = lambda x: 50*math.cos((x/100)*2*math.pi)
+    t.goto(-SIZE, cosine(-SIZE))
+    t.pendown()
+    # x_coords = [x + (y / samples) for x in range(-SIZE * scale, SIZE * scale) for y in range(samples) if x in range(-SIZE, SIZE)]
+    # cosine_list = [(x, cosine(x) * SIZE/2) for x in x_coords]
     # print(cosine_list)
-    for coords in cosine_list:
-        turtle.goto(coords)
+    for x in range(-SIZE, SIZE + 1):
+        t.goto(x, cosine(x))
 
 def draw_gradient(p_length, p_xcoord):
-    turtle.speed(0)
-    turtle.pendown()
+    t.speed(0)
+    t.pendown()
     if p_xcoord == 0:
-        turtle.seth(180)
+        t.seth(180)
     else:
-        turtle.seth(90)
-    turtle.forward(p_length)
-    turtle.backward(2 * p_length)
-    turtle.penup()
+        t.seth(90)
+    t.forward(p_length)
+    t.backward(2 * p_length)
+    t.penup()
 
-draw_sin_cos()
+# draw_sin_cos()
 
 # 7. (Turtle: chessboard) Write a program to draw a chessboard
 
@@ -434,74 +435,74 @@ def draw_chessboard():
     # set a constant for the size of the boxes
     SIZE = 100
     # Optional set turtle shape
-    turtle.shape('turtle')
+    t.shape('turtle')
     # optional set turtle speed
-    turtle.speed(0)
+    t.speed(0)
     # optional set turtle colors
-    turtle.color('black')
+    t.color('black')
     # define the fill colors
     colors = ['blanched almond', 'saddle brown']
     # optional set width of the line to be drawn
-    turtle.pensize(3)
+    t.pensize(3)
     # Ensure turtle is not drawing
-    turtle.penup()
+    t.penup()
     # goto starting position for the table
     start = lambda y: (-(SIZE * (8))/2, ((SIZE * (8)) - (2 * SIZE * y))/2)
     # iterate through the number of cells in the table that need to be drawn
     for row in range(8):
         # goto the start of the row
-        turtle.goto(start(row))
+        t.goto(start(row))
         for col in range(8):
             # alternate color fill between rows and col
             if row % 2 == 0:
                 # set the color based on position (returns either the first color, 0 index, or second color, 1 index)
-                turtle.fillcolor(colors[col % 2])
-                turtle.begin_fill()
+                t.fillcolor(colors[col % 2])
+                t.begin_fill()
                 # start drawing
-                turtle.pendown()
+                # t.pendown()
                 # draw the square
                 draw_square(SIZE)
                 # for r in range(4):
-                #     turtle.forward(SIZE)
-                #     turtle.right(90)
-                turtle.end_fill()
+                #     t.forward(SIZE)
+                #     t.right(90)
+                t.end_fill()
                 # draw the square outline
-                # turtle.color('black')
+                # t.color('black')
                 # for r in range(4):
-                #     turtle.forward(SIZE)
-                #     turtle.right(90)
+                #     t.forward(SIZE)
+                #     t.right(90)
                 # stop drawing
-                turtle.penup()
+                # t.penup()
                 # move to the start of the next cell
-                turtle.forward(SIZE)
+                t.forward(SIZE)
             else:
                 # set the color based on position (returns either the first color, 0 index, or second color, 1 index)
-                turtle.fillcolor(colors[(col + 1) % 2])
-                turtle.begin_fill()
+                t.fillcolor(colors[(col + 1) % 2])
+                t.begin_fill()
                 # start drawing
-                turtle.pendown()
+                # t.pendown()
                 # draw the square
                 draw_square(SIZE)
                 # for r in range(4):
-                #     turtle.forward(SIZE)
-                #     turtle.right(90)
-                turtle.end_fill()
+                #     t.forward(SIZE)
+                #     t.right(90)
+                t.end_fill()
                 # draw the square outline
-                # turtle.color('black')
+                # t.color('black')
                 # for r in range(4):
-                #     turtle.forward(SIZE)
-                #     turtle.right(90)
+                #     t.forward(SIZE)
+                #     t.right(90)
                 # stop drawing
-                turtle.penup()
+                # t.penup()
                 # move to the start of the next cell
-                turtle.forward(SIZE)
-    turtle.hideturtle()
+                t.forward(SIZE)
+    t.hideturtle()
 
 def draw_square(p_size):
     for _ in range(4):
-        turtle.pendown()
-        turtle.forward(p_size)
-        turtle.right(90)
-        turtle.penup()
+        t.pendown()
+        t.forward(p_size)
+        t.right(90)
+        t.penup()
 
-# draw_chessboard()
+draw_chessboard()
