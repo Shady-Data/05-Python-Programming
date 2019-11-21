@@ -23,7 +23,8 @@ def main():
         # build the return Text Fields
         contact = tk.Text(master=window, height=4, width=20)
         contact.grid(column=1, row=4, columnspan=4, padx=5)
-        contact.insert(tk.END, 'Name: ' + name + '\n' + 'Address: ' + address)
+        contact.tag_configure('center', justify='center')
+        contact.insert(tk.END, 'Name: ' + name + '\n' + 'Address: ' + address, 'center')
         # configure the Text field to not allow user input
         contact.configure(state='disabled')
 
