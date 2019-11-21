@@ -315,7 +315,7 @@ https://www.nasa.gov
 
 # flags
 string = "I cAan TyPeE GoOd"
-# pattern = re.compile(r'[aA][Oo]')
+# pattern = re.compile(r'[aAOo]')
 # pattern = re.compile(r'[ao]', re.IGNORECASE)
 pattern = re.compile(r'[ao]', re.I)
 matches = pattern.findall(string)
