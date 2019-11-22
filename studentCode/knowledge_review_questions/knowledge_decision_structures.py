@@ -3,12 +3,12 @@ Multiple Choice
     1. A __________ structure can execute a set of statements only under certain circumstances.
         a. sequence
         b. circumstantial
-        c. decision
+        (c. decision)
         d. Boolean
 
     2. A __________ structure provides one alternative path of execution.
         a. sequence
-        b. single alternative decision
+        (b. single alternative decision)
         c. one path alternative
         d. single execution decision
 
@@ -16,10 +16,10 @@ Multiple Choice
         a. binary
         b. decision
         c. unconditional
-        d. Boolean
+        (d. Boolean)
 
     4. The symbols >, <, and == are all __________ operators.
-        a. relational
+        (a. relational)
         b. logical
         c. conditional
         d. ternary
@@ -28,30 +28,30 @@ Multiple Choice
     true, or another path if the condition is false.
         a. if statement
         b. single alternative decision
-        c. dual alternative decision
+        (c. dual alternative decision)
         d. sequence
 
     6. You use a(n) __________ statement to write a single alternative decision structure.
         a. test-jump
-        b. if
+        (b. if)
         c. if-else
         d. if-call
 
     7. You use a(n) __________ statement to write a dual alternative decision structure.
         a. test-jump
         b. if
-        c. if-else
+        (c. if-else)
         d. if-call
 
     8. and, or, and not are __________ operators.
         a. relational
-        b. logical
+        (b. logical)
         c. conditional
         d. ternary
 
     9. A compound Boolean expression created with the __________ operator is true only if
     both of its subexpressions are true.
-        a. and
+        (a. and)
         b. or
         c. not
         d. both
@@ -59,7 +59,7 @@ Multiple Choice
     10. A compound Boolean expression created with the _________ operator is true if either
     of its subexpressions is true.
         a. and
-        b. or
+        (b. or)
         c. not
         d. either
 
@@ -67,28 +67,33 @@ Multiple Choice
     logical value.
         a. and
         b. or
-        c. not
+        (c. not)
         d. either
 
     12. A ___________ is a Boolean variable that signals when some condition exists in the
     program.
-        a. flag
+        (a. flag)
         b. signal
         c. sentinel
         d. siren
 
 True or False
     1. You can write any program using only sequence structures.
+    - False
     
     2. A program can be made of only one type of control structure. You cannot combine
     structures.
+    - False
 
     3. A single alternative decision structure tests a condition and then takes one path if the
     condition is true, or another path if the condition is false.
+    - False
 
     4. A decision structure can be nested inside another decision structure.
+    - True
 
     5. A compound Boolean expression created with the and operator is true only when both
     subexpressions are true.
+    - True
     
 """

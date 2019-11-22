@@ -3,7 +3,7 @@ Multiple Choice:
 
     1. You can use the _________ operator to determine whether a key exists in a dictionary.
         a. &
-        b. in
+        (b. in)
         c. ^
         d. ?
 
@@ -11,16 +11,16 @@ Multiple Choice:
         a. The remove method
         b. The erase method
         c. The delete method
-        d. The del statement
+        (d. The del statement)
 
     3. The _________ function returns the number of elements in a dictionary:
         a. size()
-        b. len()
+        (b. len())
         c. elements()
         d. count()
 
     4. You can use _________ to create an empty dictionary.
-        a. {}
+        (a. {})
         b. ()
         c. []
         d. empty()
@@ -28,12 +28,12 @@ Multiple Choice:
     5. The _________ method returns a randomly selected key-value pair from a dictionary.
         a. pop()
         b. random()
-        c. popitem()
+        (c. popitem())
         d. rand_pop()
 
     6. The _________ method returns the value associated with a specified key, and removes
     that key-value pair from the dictionary.
-        a. pop()
+        (a. pop())
         b. random()
         c. popitem()
         d. rand_pop()
@@ -43,48 +43,48 @@ Multiple Choice:
         a. pop()
         b. key()
         c. value()
-        d. get()
+        (d. get())
 
     8. The _________ method returns all of a dictionary’s keys and their associated values as
     a sequence of tuples.
         a. keys_values()
         b. values()
-        c. items()
+        (c. items())
         d. get()
 
     9. The following function returns the number of elements in a set:
         a. size()
-        b. len()
+        (b. len())
         c. elements()
         d. count()
 
     10. You can add one element to a set with this method.
         a. append
-        b. add
+        (b. add)
         c. update
         d. merge
 
     11. You can add a group of elements to a set with this method.
         a. append
         b. add
-        c. update
+        (c. update)
         d. merge
 
     12. This set method removes an element but does not raise an exception if the element is
     not found.
         a. remove
-        b. discard
+        (b. discard)
         c. delete
         d. erase
         
     13. This set method removes an element and raises an exception if the element is not found.
-        a. remove
+        (a. remove)
         b. discard
         c. delete
         d. erase
 
     14. This operator can be used to find the union of two sets.
-        a. |
+        (a. |)
         b. &
         c. -
         d. ^
@@ -92,12 +92,12 @@ Multiple Choice:
     15. This operator can be used to find the difference of two sets.
         a. |
         b. &
-        c. -
+        (c. -)
         d. ^
 
     16. This operator can be used to find the intersection of two sets.
         a. |
-        b. &
+        (b. &)
         c. -
         d. ^
 
@@ -105,32 +105,42 @@ Multiple Choice:
         a. |
         b. &
         c. -
-        d. ^
+        (d. ^)
 
 True or False:
 
     1. The keys in a dictionary must be mutable objects.
+    - False
 
     2. Dictionaries are not sequences.
+    - True
 
     3. A tuple can be a dictionary key.
+    - False
 
     4. A list can be a dictionary key.
+    - False
 
     5. The dictionary method popitem does not raise an exception if it is called on an empty
     dictionary.
+    - False
 
     6. The following statement creates an empty dictionary:
     mydct = {}
+    - True
 
     7. The following statement creates an empty set:
     myset = ()
+    - False
 
     8. Sets store their elements in an unordered fashion.
+    - True
 
     9. You can store duplicate elements in a set.
+    - False
 
     10. The remove method raises an exception if the specified element is not found in the
     set.
+    - True
 
 """

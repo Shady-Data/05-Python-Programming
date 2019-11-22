@@ -63,6 +63,54 @@ single space, as in last name, first initial.
 4. Match the set of all valid Python identifiers.
 ​"""
 
+# import keyword
+
+# identifiers = '''
+# pattern1
+# 1337V@r
+# 1var
+# Varible_split
+# camelCase
+# 3camelCase
+# 1st
+# first
+# 2nd
+# second
+# num1
+# num_1
+# list
+# List
+# lists
+# dict
+# dicts
+# Dict
+# str
+# string
+# int
+# integer
+# float
+# float_num
+# True
+# true
+# False
+# f@lse
+# if
+# in
+# and
+# And
+# y1eld
+# yield
+# Yield
+# '''
+# keywords = '(' + '|'.join(keyword.kwlist) + ')'
+# # print(keywords)
+# # (False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)
+# pattern = re.compile(r'^(?!' + keywords + r'|\W)[a-zA-Z_]\w+', re.MULTILINE)
+# matches = pattern.finditer(identifiers)
+
+# for match in matches:
+#     print(match.group(0))
+
 """
 5. Match a street address according to your local format (keep
 your regex general enough to match any number of street
@@ -116,12 +164,38 @@ maintain correct functionality). Try to break what we did in class
 and improve it.
 ​"""
 
+# emails = '''
+# TestUser@gmail.com
+# test.user@school.edu
+# test-123-user@this-place.net
+# bademail@.com
+# '''
+
+# pattern = re.compile(r'[a-zA-Z.0-9-_+]+@[a-zA-Z0-9-.]+\.[a-zA-Z0-9]+')
+# matches = pattern.findall(emails)
+
+# for match in matches:
+#     print(match)
+
 """
 8. Match the set of all valid Web site addresses (URLs) (start
 with a loose regex, and then try to tighten it as much as you
 can, yet maintain correct functionality).Try to break what we did in 
 class and improve it.
 """
+
+# urls = '''
+# http://testsite.com
+# https://www.google.com
+# https://youtube.com
+# https://www.nasa.gov
+# '''
+
+# pattern = re.compile(r'https?://(www\.)?\w+\.\w+')
+# matches = pattern.finditer(urls)
+
+# for match in matches:
+#     print(match.group(0))
 
 """​
 9. type(). The type() built-in function returns a type object,
@@ -142,6 +216,22 @@ are implementing the value that is stored in the __name__
 attribute for classes and some built-in types.
 ​"""
 
+# types = '''
+# <type 'int'>
+# <type 'float'>
+# <type 'str'>
+# <type 'list'>
+# <type 'dict'>
+# <type 'set'>
+# '''
+
+# pattern = re.compile(r'(<(type|class) \')(\w+)\'>')
+# matches = pattern.sub(r'\3', types)
+
+# print(matches)
+# type2 = pattern.sub(r'\3', str(type(types)))
+# print(type2)
+
 """
 10. Processing Dates. In Section 1.2, we gave you the regex pattern
 that matched the single or double-digit string representations of
@@ -149,3 +239,24 @@ the months January to September (0?[1-9]). Create the regex
 that represents the remaining three months in the standard
 calendar.
 """
+
+# month_nums = '''
+# 1   01
+# 2   02
+# 3   03
+# 4   04
+# 5   05
+# 6   06
+# 7   07
+# 8   08
+# 9   09
+# 10  10
+# 11  11
+# 12  12
+# '''
+
+# pattern = re.compile(r'((0?[1-9]\b)|(1[0-2]))')
+# matches = pattern.finditer(month_nums)
+
+# for match in matches:
+#     print(match.group(0))
