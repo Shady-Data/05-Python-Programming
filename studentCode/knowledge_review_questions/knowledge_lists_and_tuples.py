@@ -60,8 +60,8 @@ Multiple Choice
     Which of the following statements would you use to add the string 'Labrador' to the
     list at index 0?
         a. mylist[0] = 'Labrador'
-        (b. mylist.insert(0, 'Labrador'))
-        c. mylist.append('Labrador')
+        (b. mylist.insert(0, 'Labrador')) # more correct if list is populated
+        (c. mylist.append('Labrador'))
         d. mylist.insert('Labrador', 0)
 
     11. If you call the index method to locate an item in a list and the item is not found, this
@@ -105,9 +105,9 @@ True or False:
     list2 = list1
     - False
 
-    5. A file object’s writelines method automatically writes a newline ('\n') after writing
+   x 5. A file object’s writelines method automatically writes a newline ('\n') after writing
     each list item to the file.
-    - True
+    - True * (False)
 
     6. You can use the + operator to concatenate two lists.
     - True
@@ -126,3 +126,5 @@ True or False:
 # mylist = [0,1,2,3]
 # print(mylist.index(4))
 # ValueError: 4 is not in list
+
+# 21/22

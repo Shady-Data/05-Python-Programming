@@ -14,11 +14,11 @@ Multiple Choice
         c. debugging
         d. facilitation of teamwork
 
-    3. The first line of a function definition is known as the __________.
+   x 3. The first line of a function definition is known as the __________.
         a. body
         b. introduction
-        (c. initialization)
-        d. header
+        c. initialization
+        (d. header)
 
     4. You __________ the function to execute it.
         a. define
@@ -26,19 +26,19 @@ Multiple Choice
         c. import
         d. export
 
-    5. A design technique that programmers use to break down an algorithm into functions
+   x 5. A design technique that programmers use to break down an algorithm into functions
     is known as __________.
-        a. top-down design
+        (a. top-down design)
         b. code simplification
-        (c. code refactoring)
+        c. code refactoring
         d. hierarchical subtasking
 
-    6. A __________ is a diagram that gives a visual representation of the relationships
+   x 6. A __________ is a diagram that gives a visual representation of the relationships
     between functions in a program.
-        (a. flowchart)
+        a. flowchart
         b. function relationship chart
         c. symbol chart
-        d. hierarchy chart
+        (d. hierarchy chart)
 
     7. A __________ is a variable that is created inside a function.
         a. global variable
@@ -91,8 +91,8 @@ True or False
     4. Calling a function and defining a function mean the same thing.
     - False
 
-    5. A flowchart shows the hierarchical relationships between functions in a program.
-    - True
+   x 5. A flowchart shows the hierarchical relationships between functions in a program.
+    - True * (False)
 
     6. A hierarchy chart does not show the steps that are taken inside a function.
     - True
@@ -110,3 +110,5 @@ True or False
     - False
 
 """
+
+# 18/22

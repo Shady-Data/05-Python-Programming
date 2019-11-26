@@ -54,8 +54,8 @@ Multiple Choice:
 
     9. The following function returns the number of elements in a set:
         a. size()
-        (b. len())
-        c. elements()
+        (b. len()) # both viable
+        (c. elements()) # both viable
         d. count()
 
     10. You can add one element to a set with this method.
@@ -115,8 +115,8 @@ True or False:
     2. Dictionaries are not sequences.
     - True
 
-    3. A tuple can be a dictionary key.
-    - False
+   x 3. A tuple can be a dictionary key.
+    - False * (True)
 
     4. A list can be a dictionary key.
     - False
@@ -144,3 +144,5 @@ True or False:
     - True
 
 """
+
+# 26/27

@@ -28,7 +28,7 @@ Multiple Choice:
 
     5. By doing this you can hide a class’s attribute from code outside the class.
         a. avoid using the self parameter to create the attribute
-        b. (begin the attribute’s name with two underscores)
+        (b. begin the attribute’s name with two underscores)
         c. begin the name of the attribute with private__
         d. begin the name of the attribute with the @ symbol
 
@@ -53,8 +53,8 @@ Multiple Choice:
         d. __object__
 
     9. If a class has a method named __str__, which of these is a way to call the method?
-        a. you call it like any other method: object.__str__()
-        (b. by passing an instance of the class to the built in str function)
+        (a. you call it like any other method: object.__str__()) # both viable
+        (b. by passing an instance of the class to the built in str function) # both viable
         c. the method is automatically called when the object is created
         d. by passing an instance of the class to the built-in state function
 
@@ -96,11 +96,13 @@ True or False:
     5. Starting an attribute name with two underscores will hide the attribute from code outside the class.
     - True
 
-    6. You cannot directly call the __str__ method.
-    - True
+   x 6. You cannot directly call the __str__ method.
+    - True * (False)
     
     7. One way to find the classes needed for an object-oriented program is to identify all of
     the verbs in a description of the problem domain
     - False
 
 """
+
+# 18/19

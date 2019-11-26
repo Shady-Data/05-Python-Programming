@@ -63,16 +63,16 @@ Multiple Choice:
         (c. input)
         d. debugger
 
-    11. The input operation that appears just before a validation loop is known as the
+   x 11. The input operation that appears just before a validation loop is known as the
         a. prevalidation read
-        (b. primordial read)
-        c. initialization read
+        b. primordial read
+        (c. initialization read)
         d. priming read
 
-    12. Validation loops are also known as
-        a. error traps
+   x 12. Validation loops are also known as
+        (a. error traps)
         b. doomsday loops
-        (c. error avoidance loops)
+        c. error avoidance loops
         d. defensive loops
 
 True or False:
@@ -102,3 +102,5 @@ True or False:
     If the user answers “yes,” the program should accept the data.
     - False
 """
+
+# 18/19

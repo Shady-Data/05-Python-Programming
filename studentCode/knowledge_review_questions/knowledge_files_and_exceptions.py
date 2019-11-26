@@ -58,11 +58,11 @@ Multiple Choice:
         c. virtual file
         d. temporary file
 
-    10. This marks the location of the next item that will be read from a file.
+   x 10. This marks the location of the next item that will be read from a file.
         a. input position
         b. delimiter
-        (c. pointer)
-        d. read position
+        c. pointer
+        (d. read position)
 
     11. When a file is opened in this mode, data will be written at the end of the file’s existing
     contents.
@@ -71,11 +71,11 @@ Multiple Choice:
         c. backup mode
         d. read-only mode
 
-    12. This is a single piece of data within a record.
-        a. field
+   x 12. This is a single piece of data within a record.
+        (a. field)
         b. variable
         c. delimiter
-        (d. subrecord)
+        d. subrecord
 
     13. When an exception is generated, it is said to have been __________.
         a. built
@@ -132,3 +132,5 @@ by statements in the try suite.
 - False
 
 """
+
+# 22/24

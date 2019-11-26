@@ -15,12 +15,12 @@ Multiple Choice
         c. prerequisite
         d. predicate
 
-    3. A(n) __________ is a set of well-defined logical steps that must be taken to perform a
+   x 3. A(n) __________ is a set of well-defined logical steps that must be taken to perform a
         task.
         a. logarithm
-        (b. plan of action)
+        b. plan of action
         c. logic schedule
-        d. algorithm       
+        (d. algorithm)       
 
     4. An informal language that has no syntax rules, and is not meant to be compiled or
     executed is called __________.
@@ -85,11 +85,11 @@ Multiple Choice
         c. x = 99999
         d. x = '17'
 
-    14. In the expression 12 + 7, the values on the right and left of the + symbol are
+   x 14. In the expression 12 + 7, the values on the right and left of the + symbol are
     called __________.
-        a. operands
+        (a. operands)
         b. operators
-        (c. arguments)
+        c. arguments
         d. math expressions
 
     15. This operator performs integer division.
@@ -148,10 +148,12 @@ True or False
 
     5. If you print a variable that has not been assigned a value, the number 0 will be
     displayed.
-    - True for integers false for everything else
+    - True for integers False for everything else
 
     
 """
 
 # x = float()
 # print(x)
+
+# 23/25
