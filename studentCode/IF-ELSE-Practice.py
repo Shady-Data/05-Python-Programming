@@ -42,7 +42,7 @@ def to_roman_numeral():
 
 # Stop
 # to_roman_numeral()
-print('--------------')
+# print('--------------')
 
 # 2. Areas of Rectangles
 
@@ -84,7 +84,7 @@ def rectangleAreaCompare():
 # Stop
 
 # rectangleAreaCompare()
-print('--------------')
+# print('--------------')
 
 # 3. Mass and Weight
 
@@ -113,7 +113,7 @@ def mass_weight_calc():
         print("The object is too light")
 
 # mass_weight_calc()
-print('--------------')
+# print('--------------')
 
 # 4. Magic Dates
 
@@ -268,7 +268,7 @@ def color_mixer():
 # Stop
 
 # color_mixer()
-print('--------------')
+# print('--------------')
 
 # 6. Change for a Dollar Game
 
@@ -368,7 +368,7 @@ def book_points_earned():
 # return
 
 # book_points_earned()
-print('--------------')
+# print('--------------')
 
 # 8. Software Sales
 
@@ -413,16 +413,12 @@ def get_BMI():
         print('How did you end up here?')
 
 # get_BMI()
-print('--------------')
+# print('--------------')
 
 # 11. Time Calculator
-
 # Design a program that asks the user to enter a number of seconds, and works as follows:
-
 # * There are 60 seconds in a minute. If the number of seconds entered by the user is greater than or equal to 60, the program should display the number of minutes in that many seconds.
-
 # * There are 3,600 seconds in an hour. If the number of seconds entered by the user is greater than or equal to 3,600, the program should display the number of hours in that many seconds.
-
 # * There are 86,400 seconds in a day. If the number of seconds entered by the user is greater than or equal to 86,400, the program should display the number of days in that many seconds.
 
 # Module main
@@ -465,4 +461,4 @@ def time_calc():
     print("{} seconds is equivalent to {} days, {} hours, {} minutes, and {} seconds.".format(seconds_entry, time_dict['days'], time_dict['hours'], time_dict['minutes'], time_dict['seconds']))
 # End Module
 
-# time_calc()
+time_calc()

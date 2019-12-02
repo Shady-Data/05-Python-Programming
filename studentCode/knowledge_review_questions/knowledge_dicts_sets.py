@@ -146,3 +146,8 @@ True or False:
 """
 
 # 26/27
+
+# my_dict = {('a', 'tuple'): 'value'}
+# print(my_dict[('a', 'tuple')])    value
+# print(my_dict['a'])               KeyError: 'a'
+# print(my_dict['tuple'])           KeyError: 'tuple'

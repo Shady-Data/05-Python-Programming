@@ -236,7 +236,7 @@ def get_sales(p_tier_dict):
     return float(p_tier_dict['price'] * p_tier_dict['sold'])
 # End Function
 
-stadium_seating()
+# stadium_seating()
 # print('---------------------')
 
 # #9. Paint Job Estimator

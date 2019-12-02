@@ -196,7 +196,7 @@ knowledge_dicts_sets.py
         6. a
         7. d
         8. c
-        9. b
+        9. b,c
         10. b
         11. c
         12. b
