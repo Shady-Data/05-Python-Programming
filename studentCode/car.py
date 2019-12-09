@@ -12,12 +12,12 @@ def main():
     auto = car.Car(year_model, make)
 
     # call the accelerate method 5x
-    for accel in range(5):
+    for _ in range(5):
         auto.accelerate()
         print('Current speed is', auto.get_speed())
 
     # call the brake method 5x
-    for brak in range(5):
+    for _ in range(5):
         auto.brake()
         print('Current speed is', auto.get_speed())
 
